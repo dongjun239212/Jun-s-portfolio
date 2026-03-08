@@ -1,17 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CARD_BUTTON_LIGHT } from "@/lib/cardButtonStyles";
 import { Icon } from "@/components/Icons";
 
 const DEFAULT_TITLE = "Shop framework revamp";
 
+const HOME_HREF = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`;
+
 /** 详情页主标题区：无滚动时显示「Back to homepage」按钮 + 主标题；主标题 section 完全滚出视口后显示吸顶栏（返回 icon + 32px 标题） */
 export function DetailTitleSection() {
-  const searchParams = useSearchParams();
-  const title = searchParams.get("title") ?? DEFAULT_TITLE;
+  const [title, setTitle] = useState(DEFAULT_TITLE);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    setTitle(params.get("title") ?? DEFAULT_TITLE);
+  }, []);
   const sectionRef = useRef<HTMLElement>(null);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
@@ -55,7 +60,7 @@ export function DetailTitleSection() {
         >
           <div className="mx-auto flex w-full max-w-[1680px] items-center gap-[10px] px-5 py-[30px] md:px-[60px]">
           <Link
-            href="/"
+            href={HOME_HREF}
             className="flex shrink-0 items-center justify-center no-underline text-inherit hover:opacity-70 transition-opacity"
             aria-label="Back to homepage"
           >
@@ -74,7 +79,7 @@ export function DetailTitleSection() {
         className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"
       >
         <Link
-          href="/"
+          href={HOME_HREF}
           className={`${CARD_BUTTON_LIGHT} mb-5 inline-flex items-center gap-2 no-underline text-black`}
           aria-label="Back to homepage"
         >

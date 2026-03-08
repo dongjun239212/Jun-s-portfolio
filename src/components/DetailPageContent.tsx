@@ -4,6 +4,8 @@
 
 import Link from "next/link";
 import { Suspense } from "react";
+
+const HOME_HREF = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/#top`;
 import { DetailImage } from "@/components/DetailImage";
 import { DetailTitleSection } from "@/components/DetailTitleSection";
 import { SidebarNav } from "@/components/SidebarNav";
@@ -33,7 +35,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
       <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
         <div className="flex flex-col border-b border-black px-5 py-10">
           <Link
-            href="/#top"
+            href={HOME_HREF}
             className="flex w-40 items-center justify-center p-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
           >
             <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">

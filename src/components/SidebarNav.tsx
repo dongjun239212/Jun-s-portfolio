@@ -12,6 +12,8 @@ const LINKS = [
 
 const SECTION_IDS = ["projects", "thinking", "about"];
 
+const DEPLOY_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 type SidebarNavProps = { basePath?: string; activeSection?: string | null };
 
 export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavProps) {
@@ -61,7 +63,8 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
   return (
     <nav className="flex flex-col gap-10 px-5 py-8">
       {LINKS.map(({ href, label, icon }) => {
-        const fullHref = basePath ? `${basePath}${href}` : href;
+        // 详情页侧栏需指向首页锚点：用部署 basePath 构建完整路径，避免跳到站点根导致 404
+        const fullHref = basePath ? `${DEPLOY_BASE}/${href}` : href;
         const sectionId = href.slice(1);
         const isActive = basePath
           ? fromSection === sectionId
