@@ -2,10 +2,7 @@
  * 项目详情页内容 - 供视图切换复用
  */
 
-import Link from "next/link";
 import { Suspense } from "react";
-
-const HOME_HREF = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/#top`;
 import { DetailImage } from "@/components/DetailImage";
 import { DetailTitleSection } from "@/components/DetailTitleSection";
 import { SidebarNav } from "@/components/SidebarNav";
@@ -27,6 +24,8 @@ import detailStrategy2b from "@/assets/detail/detail-strategy-2b.png";
 import detailStrategy3a from "@/assets/detail/detail-strategy-3a.png";
 import detailStrategy3b from "@/assets/detail/detail-strategy-3b.png";
 
+const HOME_HREF = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/#top`;
+
 type DetailPageContentProps = { detailFromSection?: string | null };
 
 export function DetailPageContent({ detailFromSection = null }: DetailPageContentProps) {
@@ -34,7 +33,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
     <div className="flex min-h-screen bg-white text-black">
       <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
         <div className="flex flex-col border-b border-black px-5 py-10">
-          <Link
+          <a
             href={HOME_HREF}
             className="flex w-40 items-center justify-center p-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
           >
@@ -43,7 +42,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
               {`& `}
               CRAZY
             </h1>
-          </Link>
+          </a>
         </div>
         <SidebarNav basePath="/" activeSection={detailFromSection} />
       </aside>

@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CARD_BUTTON_LIGHT } from "@/lib/cardButtonStyles";
 import { Icon } from "@/components/Icons";
 
 const DEFAULT_TITLE = "Shop framework revamp";
 
+// 使用普通 <a> 并写死完整路径，避免 Link 再拼 basePath 导致 /My-new-portfolio/My-new-portfolio/ 的 404
 const HOME_HREF = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`;
 
 /** 详情页主标题区：无滚动时显示「Back to homepage」按钮 + 主标题；主标题 section 完全滚出视口后显示吸顶栏（返回 icon + 32px 标题） */
@@ -59,13 +59,13 @@ export function DetailTitleSection() {
           role="banner"
         >
           <div className="mx-auto flex w-full max-w-[1680px] items-center gap-[10px] px-5 py-[30px] md:px-[60px]">
-          <Link
+          <a
             href={HOME_HREF}
             className="flex shrink-0 items-center justify-center no-underline text-inherit hover:opacity-70 transition-opacity"
             aria-label="Back to homepage"
           >
             <Icon name="arrow_back" size={32} className="text-black" aria-hidden />
-          </Link>
+          </a>
           <h1 className="min-w-0 text-[24px] font-bold leading-[1.2] text-black">
             {title}
           </h1>
@@ -78,14 +78,14 @@ export function DetailTitleSection() {
         ref={sectionRef}
         className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"
       >
-        <Link
+        <a
           href={HOME_HREF}
           className={`${CARD_BUTTON_LIGHT} mb-5 inline-flex items-center gap-2 no-underline text-black`}
           aria-label="Back to homepage"
         >
           <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
           <span>Back to homepage</span>
-        </Link>
+        </a>
         <h1 className="min-w-0 text-[48px] font-bold leading-[1.2] text-black">
           {title}
         </h1>
