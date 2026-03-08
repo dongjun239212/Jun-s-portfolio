@@ -17,6 +17,7 @@ export function ProjectCard({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const onLoad = useCallback(() => setLoaded(true), []);
+  const onError = useCallback(() => setLoaded(true), []);
 
   const checkComplete = useCallback(() => {
     const el = containerRef.current;
@@ -30,10 +31,14 @@ export function ProjectCard({
     const t1 = requestAnimationFrame(() => checkComplete());
     const t2 = setTimeout(checkComplete, 50);
     const t3 = setTimeout(checkComplete, 200);
+    const t4 = setTimeout(checkComplete, 400);
+    const t5 = setTimeout(checkComplete, 800);
     return () => {
       cancelAnimationFrame(t1);
       clearTimeout(t2);
       clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
     };
   }, [checkComplete]);
 
@@ -46,7 +51,7 @@ export function ProjectCard({
   return (
     <article className="group relative flex flex-1 flex-col rounded-none outline-none transition-shadow duration-200 focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2">
       <div className="absolute inset-0 z-10 bg-black/[0.03] opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none rounded-none" aria-hidden />
-      <div ref={containerRef} className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-zinc-200">
+      <div ref={containerRef} className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-[#f5f5f5]">
         <img
           alt=""
           src={imageSrc}
@@ -54,6 +59,7 @@ export function ProjectCard({
           loading="lazy"
           decoding="async"
           onLoad={onLoad}
+          onError={onError}
         />
         {/* 未加载时灰色占位盖在最上层，加载完成后淡出，与 Thinking 卡片一致 */}
         <div

@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "preview": "npm run build && npx serve out -s -p 3002",
+    "deploy:oss": "node scripts/upload-to-oss.mjs",
+    "compress:images": "node scripts/compress-images.mjs",
     "lint": "eslint"
   },
   "dependencies": {
@@ -20,8 +22,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "ali-oss": "^6.21.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "sharp": "^0.33.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

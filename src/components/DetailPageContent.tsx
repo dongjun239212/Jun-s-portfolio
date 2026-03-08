@@ -3,8 +3,8 @@
  */
 
 import Link from "next/link";
-import Image from "next/image";
 import { Suspense } from "react";
+import { DetailImage } from "@/components/DetailImage";
 import { DetailTitleSection } from "@/components/DetailTitleSection";
 import { SidebarNav } from "@/components/SidebarNav";
 import detailHero from "@/assets/detail/detail-hero.png";
@@ -48,7 +48,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
 
       <main className="min-w-0 flex-1 flex flex-col w-full">
         <section className="relative h-[480px] w-full shrink-0 overflow-hidden" aria-hidden>
-          <Image src={detailHero} alt="" className="object-cover object-center size-full" fill priority />
+          <DetailImage src={detailHero} alt="" className="object-cover object-center size-full" fill priority />
         </section>
         <div className="flex w-full max-w-[1680px] flex-1 flex-col mx-auto pb-[120px]">
           <Suspense fallback={<section className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"><div className="h-20 w-64 bg-black/5 rounded animate-pulse" /></section>}>
@@ -120,7 +120,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                   </ol>
                 </div>
                 <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
-                  <Image src={detailUserResearch} alt="" className="object-cover object-center" fill />
+                  <DetailImage src={detailUserResearch} alt="" className="object-cover object-center" fill />
                 </div>
               </div>
               <div className="flex w-full flex-col items-start gap-[20px]">
@@ -146,10 +146,10 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                 </div>
                 <div className="flex w-full gap-[20px]">
                   <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailData1} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailData1} alt="" className="object-cover object-center" fill />
                   </div>
                   <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailData2} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailData2} alt="" className="object-cover object-center" fill />
                   </div>
                 </div>
               </div>
@@ -166,10 +166,10 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                 </div>
                 <div className="flex w-full flex-col gap-[20px]">
                   <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailCompetitor1} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailCompetitor1} alt="" className="object-cover object-center" fill />
                   </div>
                   <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailCompetitor2} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailCompetitor2} alt="" className="object-cover object-center" fill />
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
           <section className="flex flex-col gap-[40px] px-5 py-[40px] md:px-[60px]">
             <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">5.</span><span className="">Design proposal</span></h2>
             <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
-              <Image src={detailProposalMain} alt="" className="object-cover object-center" fill />
+              <DetailImage src={detailProposalMain} alt="" className="object-cover object-center" fill />
             </div>
             <div className="flex flex-col gap-[40px]">
               <div className="flex flex-col gap-[20px]">
@@ -246,22 +246,10 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                   </div>
                   <div className="flex gap-[10px]">
                     <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1a} alt="" className="object-cover object-center" fill />
+                      <DetailImage src={detailStrategy1a} alt="" className="object-cover object-center" fill />
                     </div>
                     <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1b} alt="" className="object-cover object-center" fill />
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-base font-semibold leading-[1.3] text-black">Enhance entry efficiency, expand store entry traffic:</p>
-                    <p className="text-base leading-[1.3] text-black/65">Optimize some store entrances with high traffic and high conversion rates.</p>
-                  </div>
-                  <div className="flex gap-[10px]">
-                    <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1c} alt="" className="object-cover object-center" fill />
-                    </div>
-                    <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1d} alt="" className="object-cover object-center" fill />
+                      <DetailImage src={detailStrategy1b} alt="" className="object-cover object-center" fill />
                     </div>
                   </div>
                   <div className="flex flex-col gap-[10px]">
@@ -270,10 +258,22 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                   </div>
                   <div className="flex gap-[10px]">
                     <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1e} alt="" className="object-cover object-center" fill />
+                      <DetailImage src={detailStrategy1c} alt="" className="object-cover object-center" fill />
                     </div>
                     <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                      <Image src={detailStrategy1f} alt="" className="object-cover object-center" fill />
+                      <DetailImage src={detailStrategy1d} alt="" className="object-cover object-center" fill />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-base font-semibold leading-[1.3] text-black">Enhance entry efficiency, expand store entry traffic:</p>
+                    <p className="text-base leading-[1.3] text-black/65">Optimize some store entrances with high traffic and high conversion rates.</p>
+                  </div>
+                  <div className="flex gap-[10px]">
+                    <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                      <DetailImage src={detailStrategy1e} alt="" className="object-cover object-center" fill />
+                    </div>
+                    <div className="relative min-w-0 flex-1 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                      <DetailImage src={detailStrategy1f} alt="" className="object-cover object-center" fill />
                     </div>
                   </div>
                 </div>
@@ -286,14 +286,14 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                     <p className="text-base leading-[1.3] text-black/65">Adjust the overall store framework structure, reasonably divide store functions.</p>
                   </div>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailStrategy2a} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailStrategy2a} alt="" className="object-cover object-center" fill />
                   </div>
                   <div className="flex flex-col gap-[10px]">
                     <p className="text-base font-semibold leading-[1.3] text-black">Enhance entry efficiency, expand store entry traffic:</p>
                     <p className="text-base leading-[1.3] text-black/65">Optimize some store entrances with high traffic and high conversion rates.</p>
                   </div>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailStrategy2b} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailStrategy2b} alt="" className="object-cover object-center" fill />
                   </div>
                 </div>
               </div>
@@ -305,14 +305,14 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
                     <p className="text-base leading-[1.3] text-black/65">Adjust the overall store framework structure, build a flexible, scalable store framework.</p>
                   </div>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailStrategy3a} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailStrategy3a} alt="" className="object-cover object-center" fill />
                   </div>
                   <div className="flex flex-col gap-[10px]">
                     <p className="text-base font-semibold leading-[1.3] text-black">Enhance entry efficiency, expand store entry traffic:</p>
                     <p className="text-base leading-[1.3] text-black/65">Optimize some store entrances with high traffic and high conversion rates.</p>
                   </div>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <Image src={detailStrategy3b} alt="" className="object-cover object-center" fill />
+                    <DetailImage src={detailStrategy3b} alt="" className="object-cover object-center" fill />
                   </div>
                 </div>
               </div>

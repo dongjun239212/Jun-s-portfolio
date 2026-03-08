@@ -34,10 +34,14 @@ export function ThinkingCard({
     const t1 = requestAnimationFrame(() => checkComplete());
     const t2 = setTimeout(checkComplete, 50);
     const t3 = setTimeout(checkComplete, 200);
+    const t4 = setTimeout(checkComplete, 400);
+    const t5 = setTimeout(checkComplete, 800);
     return () => {
       cancelAnimationFrame(t1);
       clearTimeout(t2);
       clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
     };
   }, [checkComplete]);
 
@@ -51,15 +55,15 @@ export function ThinkingCard({
 
   return (
     <article className="group relative flex aspect-[300/400] flex-col justify-end overflow-hidden rounded-none outline-none transition-shadow duration-200 hover:shadow-lg focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2 focus-within:shadow-lg px-5 pb-6 pt-[224px] bg-zinc-800">
-      <div ref={containerRef} className="absolute inset-0 pointer-events-none" aria-hidden>
-        {/* 图片层：未全部加载时透明，避免出现马赛克或模糊 */}
+      <div ref={containerRef} className="absolute inset-0 pointer-events-none bg-[#f5f5f5]" aria-hidden>
+        {/* 底层灰块 + 图片层：未全部加载时透明，避免出现马赛克或模糊 */}
         {imageSrcs.map((src, i) => (
           <img
             key={i}
             alt=""
             src={src}
             className={`absolute inset-0 z-0 size-full object-cover transition-opacity duration-200 ${allLoaded ? "opacity-100" : "opacity-0"}`}
-            loading="eager"
+            loading="lazy"
             decoding="async"
             onLoad={onLoad}
             onError={onLoad}

@@ -6,6 +6,7 @@ import "./globals.css";
 const tiktokSans = TikTok_Sans({
   subsets: ["latin"],
   variable: "--font-tiktok-sans",
+  display: "swap",
 });
 
 const playfairDisplay = Playfair_Display({
@@ -13,6 +14,7 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
   weight: ["400", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const SITE_NAME = "CALM & CRAZY | Albert Dong";

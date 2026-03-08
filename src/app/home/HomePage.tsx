@@ -17,6 +17,7 @@ import keyProject1 from "@/assets/key-project-1.png";
 import keyProject2 from "@/assets/key-project-2.png";
 import keyProject3 from "@/assets/key-project-3.png";
 import keyProject4 from "@/assets/key-project-4.png";
+import { HeroBackground } from "@/components/HeroBackground";
 import { LinkToDetail } from "@/components/LinkToDetail";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SidebarNav } from "@/components/SidebarNav";
@@ -58,11 +59,7 @@ export default function HomePage() {
         {/* Hero */}
         <section className="relative flex aspect-[21/9] w-full items-center justify-center px-[240px] py-[100px]">
           <div className="absolute inset-0 pointer-events-none" aria-hidden>
-            <img
-              alt=""
-              src={PLACEHOLDER.hero.src}
-              className="absolute inset-0 size-full object-cover"
-            />
+            <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
           <p className="relative z-10 w-full text-center text-[7.59375rem] font-bold uppercase leading-[1.2] text-white">
