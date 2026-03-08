@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SIDEBAR_NAV_LINK_ACTIVE, SIDEBAR_NAV_LINK_DEFAULT } from "@/lib/sidebarNavStyles";
 import { Icon } from "@/components/Icons";
@@ -11,8 +12,6 @@ const LINKS = [
 ];
 
 const SECTION_IDS = ["projects", "thinking", "about"];
-
-const DEPLOY_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 type SidebarNavProps = { basePath?: string; activeSection?: string | null };
 
@@ -60,20 +59,37 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
     return () => window.removeEventListener("scroll", updateActive);
   }, [basePath]);
 
+  const linkClass = (isActive: boolean) =>
+    isActive ? SIDEBAR_NAV_LINK_ACTIVE : SIDEBAR_NAV_LINK_DEFAULT;
+
   return (
     <nav className="flex flex-col gap-10 px-5 py-8">
       {LINKS.map(({ href, label, icon }) => {
-        // 详情页侧栏需指向首页锚点：用部署 basePath 构建完整路径，避免跳到站点根导致 404
-        const fullHref = basePath ? `${DEPLOY_BASE}/${href}` : href;
         const sectionId = href.slice(1);
-        const isActive = basePath
-          ? fromSection === sectionId
-          : activeHash === href;
+        const isActive = basePath ? fromSection === sectionId : activeHash === href;
+        // 详情页用 Link 做客户端导航回首页锚点，不整页跳转，避免 404
+        if (basePath) {
+          return (
+            <Link
+              key={href}
+              href={`/${href}`}
+              className={linkClass(isActive)}
+            >
+              <Icon
+                name={icon as "apps" | "psychology" | "person"}
+                size={24}
+                className={`h-6 w-6 ${isActive ? "text-red-600" : "text-black/65"} group-hover:text-red-600`}
+                aria-hidden
+              />
+              {label}
+            </Link>
+          );
+        }
         return (
           <a
             key={href}
-            href={fullHref}
-            className={isActive ? SIDEBAR_NAV_LINK_ACTIVE : SIDEBAR_NAV_LINK_DEFAULT}
+            href={href}
+            className={linkClass(isActive)}
           >
             <Icon
               name={icon as "apps" | "psychology" | "person"}
