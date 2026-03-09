@@ -7,7 +7,7 @@
     "dev:preview": "node scripts/dev-preview.mjs",
     "build": "next build",
     "start": "next start",
-    "preview": "npm run build && npx serve out -s -p 3002",
+    "preview": "npm run build && node scripts/serve-out.mjs",
     "deploy:oss": "node scripts/upload-to-oss.mjs",
     "compress:images": "node scripts/compress-images.mjs",
     "lint": "eslint"

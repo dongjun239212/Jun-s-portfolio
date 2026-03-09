@@ -56,13 +56,21 @@ export default function HomePage() {
       </aside>
 
       <main className="min-w-0 flex-1">
-        {/* Hero */}
-        <section className="relative flex aspect-[21/9] w-full items-center justify-center px-[240px] py-[100px]">
+        {/* Hero：宽高比 2:1；与 hero image 同区域，左右各 160px padding，句子在中间撑满展示，两行放不下则缩小字号 */}
+        <section
+          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[160px] max-md:px-8"
+          style={{ aspectRatio: "2" }}
+        >
           <div className="absolute inset-0 pointer-events-none" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <p className="relative z-10 w-full text-center text-[7.59375rem] font-bold uppercase leading-[1.2] text-white">
+          <p
+            className="relative z-10 w-full text-center font-bold uppercase leading-[1.2] text-white line-clamp-3"
+            style={{
+              fontSize: "clamp(0.625rem, 3.2vw + 0.75rem, 7.59375rem)",
+            }}
+          >
             I have no hands. I built this. Think about it.
           </p>
         </section>
@@ -158,7 +166,7 @@ export default function HomePage() {
                   <div className="flex gap-6 md:gap-8">
                     <div className="flex min-w-0 flex-1 flex-col pl-0">
                       <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/48">2021.05 - 2031.05</span>
+                        <span className="font-semibold tabular-nums text-black/48">2021.05 - 2025.05</span>
                         <span>TikTok</span>
                         <span className="font-semibold text-black/90">SENIOR UX DESIGNER</span>
                       </div>

@@ -50,6 +50,11 @@ body {
   color: rgba(0, 0, 0, 0.65);
 }
 
+/* 侧栏导航：悬停时图标强制红色，覆盖内联 color */
+a.group:hover .sidebar-nav-icon {
+  color: #dc2626 !important;
+}
+
 /* Next.js 开发时注入的 portal 固定到视口，避免脱离文档流后出现在错误位置影响滚动 */
 nextjs-portal {
   position: fixed !important;
