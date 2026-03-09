@@ -65,8 +65,8 @@ export default function HomePage() {
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <p className="relative z-10 w-full text-center text-[3.5rem] font-bold leading-[1.3] text-white md:text-[4.5rem]">
-            凡所有相 皆是虚妄。若见诸相非相 即见如来。
+          <p className="font-hero-cn hero-text-gold relative z-10 w-full text-center text-[3.5rem] font-medium leading-[1.3] md:text-[4.5rem]">
+            凡有所相，皆为虚妄。若见诸相非相，即见未来。
           </p>
         </section>
 

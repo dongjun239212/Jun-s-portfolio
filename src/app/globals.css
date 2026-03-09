@@ -39,6 +39,17 @@ body {
   font-family: var(--font-playfair), Georgia, serif;
 }
 
+/* Hero 中文书法感：行楷优先，无则回退楷体/宋体 */
+.font-hero-cn {
+  font-family: "STXingkai", "华文行楷", "Xingkai", "KaiTi", "楷体", "STKaiti", "SimSun", "宋体", serif;
+}
+
+/* Hero 文案：一点金色，带年代感 */
+.hero-text-gold {
+  color: #FFF6EB;
+  text-shadow: 0 0 20px rgba(180, 150, 80, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 /* 详情页列表：序号外挂保留换行缩进（折行与首行文字对齐）、数字等宽 */
 .detail-list {
   list-style-position: outside;
