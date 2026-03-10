@@ -8,10 +8,13 @@ const basePath =
       ? `/${process.env.GITEE_REPO_NAME || "my-portfolio"}`
       : "";
 
-// 只有在 GitHub Pages / Gitee Pages 等“纯静态托管”场景下才使用 output: "export"
-// 在 Vercel 上不会设置 GITHUB_PAGES / GITEE_PAGES，因此使用 Next.js 默认输出（.next），避免构建错误
+// 是否做 static export（导出 out 目录）
+// - GitHub Pages / Gitee Pages：需要 static export
+// - 其它平台（Vercel、腾讯云静态托管等）：可通过 STATIC_EXPORT=true 显式开启
 const isStaticExport =
-  process.env.GITHUB_PAGES === "true" || process.env.GITEE_PAGES === "true";
+  process.env.STATIC_EXPORT === "true" ||
+  process.env.GITHUB_PAGES === "true" ||
+  process.env.GITEE_PAGES === "true";
 
 const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export" } : {}),
