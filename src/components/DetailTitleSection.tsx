@@ -50,23 +50,24 @@ export function DetailTitleSection() {
 
   return (
     <>
-      {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
+      {/* 吸顶栏：Figma 279-70715 — 白底、上下结构（胶囊按钮 + 标题）、底部细线 */}
       {showStickyBar && (
         <div
-          className="fixed left-0 right-0 top-0 z-20 bg-white/50 backdrop-blur-md md:left-[220px]"
+          className="fixed left-0 right-0 top-0 z-20 border-b border-black/10 bg-white md:left-[220px]"
           role="banner"
         >
-          <div className="mx-auto flex w-full max-w-[1680px] items-center gap-[10px] px-5 py-[30px] md:px-[60px]">
-          <Link
-            href="/"
-            className="flex shrink-0 items-center justify-center no-underline text-inherit hover:opacity-70 transition-opacity"
-            aria-label="Back to homepage"
-          >
-            <Icon name="arrow_back" size={32} className="text-black" aria-hidden />
-          </Link>
-          <h1 className="min-w-0 text-[24px] font-bold leading-[1.2] text-black">
-            {title}
-          </h1>
+          <div className="mx-auto flex w-full max-w-[1680px] flex-col gap-[8px] items-start px-5 py-[14px] md:px-[60px]">
+            <Link
+              href="/"
+              className="flex h-[28px] items-center justify-center gap-1 rounded-full bg-black/5 px-[7px] py-[8px] no-underline text-black hover:bg-black/10 transition-colors text-[13px] font-semibold leading-[1.3]"
+              aria-label="Back to homepage"
+            >
+              <Icon name="arrow_back" size={14} className="shrink-0 text-black" aria-hidden />
+              <span>Back to homepage</span>
+            </Link>
+            <h1 className="min-w-0 text-[24px] font-bold leading-[1.25] text-black">
+              {title}
+            </h1>
           </div>
         </div>
       )}

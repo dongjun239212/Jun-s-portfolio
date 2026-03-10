@@ -153,6 +153,7 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
         const sectionId = href.slice(1);
         const isActive = basePath ? fromSection === sectionId : activeHash === href;
         // 详情页用 Link 做客户端导航回首页锚点，不整页跳转，避免 404
+        // 详情页与首页共用同一套 link 样式，图标用 text-inherit 继承链接颜色，保证 icon 与文字一致
         if (basePath) {
           return (
             <Link
@@ -163,7 +164,7 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
               <Icon
                 name={icon as "apps" | "psychology" | "person"}
                 size={24}
-                className={`h-6 w-6 ${isActive ? "text-red-600" : "text-black/65"} group-hover:text-red-600`}
+                className="h-6 w-6 shrink-0 text-inherit"
                 aria-hidden
               />
               {label}
