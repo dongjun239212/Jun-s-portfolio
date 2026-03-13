@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 
 type StaticImageData = { src: string; height: number; width: number };
 
-/** 详情页图片：容器浅灰底，加载失败时整块改为更深的灰色，避免白块或裂图 */
+/** 详情页图片：加载失败时显示灰色占位，避免空白或裂图 */
 export function DetailImage({
   src,
   alt = "",
@@ -21,7 +21,6 @@ export function DetailImage({
 }) {
   const [failed, setFailed] = useState(false);
   const onError = useCallback(() => setFailed(true), []);
-
   if (failed) {
     return (
       <div
@@ -31,22 +30,15 @@ export function DetailImage({
       />
     );
   }
-
-  const wrapperClass = fill
-    ? "absolute inset-0 bg-[#f5f5f5]"
-    : "relative bg-[#f5f5f5]";
-
   return (
-    <div className={wrapperClass}>
-      <Image
-        src={src}
-        alt={alt}
-        className={className}
-        fill={fill}
-        priority={priority}
-        onError={onError}
-        unoptimized
-      />
-    </div>
+    <Image
+      src={src}
+      alt={alt}
+      className={className}
+      fill={fill}
+      priority={priority}
+      onError={onError}
+      unoptimized
+    />
   );
 }

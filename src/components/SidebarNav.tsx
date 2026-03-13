@@ -13,10 +13,13 @@ const LINKS = [
 
 const SECTION_IDS = ["projects", "thinking", "about"];
 
-const iconSizeClass = "h-6 w-6 shrink-0 sidebar-nav-icon text-inherit";
+const iconSizeClass = "h-6 w-6 shrink-0 sidebar-nav-icon";
 
-/** 桌面 Icon/Projects.svg 内联，用 currentColor 继承父级颜色，hover 时随文字变红 */
-function ProjectsIcon() {
+/** 实心灰 / 实心红，用内联 style 确保生效（避免 Tailwind 或继承导致偏淡） */
+const iconColor = (isActive: boolean) => (isActive ? "#dc2626" : "#737373"); // red-600 / neutral-500
+
+/** 桌面 Icon/Projects.svg 内联 */
+function ProjectsIcon({ color }: { color: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +28,7 @@ function ProjectsIcon() {
       height={24}
       fill="none"
       className={iconSizeClass}
+      style={{ color }}
       aria-hidden
     >
       <path
@@ -43,8 +47,8 @@ function ProjectsIcon() {
   );
 }
 
-/** 桌面 Icon/Thinking.svg 内联，用 currentColor 继承父级颜色，hover 时随文字变红 */
-function ThinkingIcon() {
+/** 桌面 Icon/Thinking.svg 内联 */
+function ThinkingIcon({ color }: { color: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +57,7 @@ function ThinkingIcon() {
       height={24}
       fill="none"
       className={iconSizeClass}
+      style={{ color }}
       aria-hidden
     >
       <path
@@ -63,8 +68,8 @@ function ThinkingIcon() {
   );
 }
 
-/** 桌面 Icon/About me.svg 内联，用 currentColor 继承父级颜色，hover 时随文字变红；clipPath 用唯一 id 避免冲突 */
-function AboutMeIcon() {
+/** 桌面 Icon/About me.svg 内联，clipPath 用唯一 id 避免冲突 */
+function AboutMeIcon({ color }: { color: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +78,7 @@ function AboutMeIcon() {
       height={24}
       fill="none"
       className={iconSizeClass}
+      style={{ color }}
       aria-hidden
     >
       <defs>
@@ -153,7 +159,6 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
         const sectionId = href.slice(1);
         const isActive = basePath ? fromSection === sectionId : activeHash === href;
         // 详情页用 Link 做客户端导航回首页锚点，不整页跳转，避免 404
-        // 详情页与首页共用同一套 link 样式，图标用 text-inherit 继承链接颜色，保证 icon 与文字一致
         if (basePath) {
           return (
             <Link
@@ -164,7 +169,7 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
               <Icon
                 name={icon as "apps" | "psychology" | "person"}
                 size={24}
-                className="h-6 w-6 shrink-0 text-inherit"
+                className={`h-6 w-6 ${isActive ? "text-red-600" : "text-black/65"} group-hover:text-red-600`}
                 aria-hidden
               />
               {label}
@@ -177,9 +182,9 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
             href={href}
             className={linkClass(isActive)}
           >
-            {icon === "apps" && <ProjectsIcon />}
-            {icon === "psychology" && <ThinkingIcon />}
-            {icon === "person" && <AboutMeIcon />}
+            {icon === "apps" && <ProjectsIcon color={iconColor(isActive)} />}
+            {icon === "psychology" && <ThinkingIcon color={iconColor(isActive)} />}
+            {icon === "person" && <AboutMeIcon color={iconColor(isActive)} />}
             {label}
           </a>
         );

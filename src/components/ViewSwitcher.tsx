@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HomePage from "@/app/home/HomePage";
 import { DetailPageContent } from "@/components/DetailPageContent";
-import { AppSidebar } from "@/components/AppSidebar";
 import { getHomeScrollY, clearHomeScrollY } from "@/components/LinkToDetail";
 
 function getFromParam(): string | null {
@@ -14,10 +13,11 @@ function getFromParam(): string | null {
 }
 
 /**
- * 全局布局：侧栏只渲染一次，主内容区在首页/详情页之间切换。
+ * 首页与详情页双视图常驻 DOM，仅通过 display 切换显示。
  * - 点击「Back to homepage」返回首页：恢复前序页面的滚动位置（由 LinkToDetail 写入 sessionStorage）。
  * - 点击侧栏导航（Projects / Thinking / About me）返回首页：定位到对应 section 的初始位置（hash 锚点）。
  * - 从 Projects/Thinking 进入详情页时，侧栏高亮对应项（通过 URL from 参数传入）。
+ * 使用 window.location 读取 from 参数，避免 useSearchParams 导致 Suspense 一直显示 Loading。
  */
 export function ViewSwitcher() {
   const pathname = usePathname();
@@ -57,22 +57,21 @@ export function ViewSwitcher() {
   }, [isDetail]);
 
   return (
-    <div className="flex min-h-screen bg-white text-black">
-      <AppSidebar isDetail={isDetail} detailFromSection={detailFromSection} />
+    <>
       <div
         style={{ display: isDetail ? "none" : "block" }}
-        className="min-w-0 flex-1 min-h-screen"
+        className="min-h-screen"
         aria-hidden={isDetail}
       >
         <HomePage />
       </div>
       <div
         style={{ display: isDetail ? "block" : "none" }}
-        className="min-w-0 flex-1 min-h-screen"
+        className="min-h-screen"
         aria-hidden={!isDetail}
       >
-        <DetailPageContent />
+        <DetailPageContent detailFromSection={detailFromSection} />
       </div>
-    </div>
+    </>
   );
 }

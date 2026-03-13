@@ -3,7 +3,7 @@
  * 图片通过 import 引入，使用原生 img 确保稳定显示
  */
 
-import heroImg from "@/assets/hero-bg.png";
+const heroImg = { src: "/hero-watercolor.png" } as const;
 import projectPlaceholder from "@/assets/placeholder-project.jpg";
 import thinkingPlaceholder from "@/assets/placeholder-thinking.jpg";
 import thinkingImg1 from "@/assets/thinking/thinking-7f12ea1300756f144a0fb5daaf68dbfc01103a46.png";
@@ -20,6 +20,7 @@ import keyProject4 from "@/assets/key-project-4.png";
 import { HeroBackground } from "@/components/HeroBackground";
 import { LinkToDetail } from "@/components/LinkToDetail";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SidebarNav } from "@/components/SidebarNav";
 import { ThinkingCard } from "@/components/ThinkingCard";
 
 const PLACEHOLDER = {
@@ -39,18 +40,33 @@ const THINKING_CARDS: { title: string; imageSrcs: string[]; gradientFrom: string
 
 export default function HomePage() {
   return (
-    <main className="min-w-0 flex-1 min-h-screen" id="top">
+    <div className="flex min-h-screen bg-white text-black" id="top">
+      {/* 左侧导航 - 220px 固定 */}
+      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
+        <div className="flex flex-col border-b border-black px-5 py-10">
+          <a href="#top" className="flex w-40 items-center justify-center p-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity">
+            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
+              {`CALM `}
+              {`& `}
+              CRAZY
+            </h1>
+          </a>
+        </div>
+        <SidebarNav />
+      </aside>
+
+      <main className="min-w-0 flex-1">
         {/* Hero：宽高比 2:1；与 hero image 同区域，左右各 160px padding，句子在中间撑满展示，两行放不下则缩小字号 */}
         <section
-          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[160px] max-md:px-8"
+          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8"
           style={{ aspectRatio: "2" }}
         >
           <div className="absolute inset-0 pointer-events-none" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <p className="font-hero-cn hero-text-gold relative z-10 w-full text-center text-[3.5rem] font-medium leading-[1.3] md:text-[4.5rem]">
-            凡有所相，皆为虚妄。若见诸相非相，即见如来。
+          <p className="hero-quote relative z-10 w-full text-center text-xs font-bold leading-snug text-white sm:text-sm md:text-base lg:text-[56px]">
+            Weakness and ignorance are not the barriers to survival, but arrogance is.
           </p>
         </section>
 
@@ -134,7 +150,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <div className="grid gap-10 sm:grid-cols-3">
-                    <StatBlock number="6" label="Years" detail="I have 6 years work experience for UX design" />
+                    <StatBlock number="8" label="Years" detail="I have 6 years work experience for UX design" />
                     <StatBlock number="3" label="companys" detail="I have worked for 3 large different business IT companies" />
                     <StatBlock number="12+" label="Projects" detail="I have successfully handled over 12 P00 design projects" />
                   </div>
@@ -145,7 +161,7 @@ export default function HomePage() {
                   <div className="flex gap-6 md:gap-8">
                     <div className="flex min-w-0 flex-1 flex-col pl-0">
                       <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/48">2021.05 - 2025.05</span>
+                        <span className="font-semibold tabular-nums text-black/48">2021.05 - 2035.05</span>
                         <span>TikTok</span>
                         <span className="font-semibold text-black/90">SENIOR UX DESIGNER</span>
                       </div>
@@ -197,7 +213,8 @@ export default function HomePage() {
             I don&apos;t need a Thought Stamp—I am the master of my own convictions.
           </p>
         </footer>
-    </main>
+      </main>
+    </div>
   );
 }
 
