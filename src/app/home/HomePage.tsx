@@ -39,24 +39,9 @@ const THINKING_CARDS: { title: string; imageSrcs: string[]; gradientFrom: string
   { title: "Inventory management system upgrade", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg6 as { src: string }).src, (thinkingImg7 as { src: string }).src], gradientFrom: "29.625%" },
 ];
 
-export default function HomePage() {
+export function HomeMain() {
   return (
-    <div className="flex min-h-screen bg-white text-black" id="top">
-      {/* 左侧导航 - 220px 固定 */}
-      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
-        <div className="flex flex-col border-b border-black px-5 py-10">
-          <a href="#top" className="flex w-40 items-center justify-center p-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity">
-            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
-              {`CALM `}
-              {`& `}
-              CRAZY
-            </h1>
-          </a>
-        </div>
-        <SidebarNav />
-      </aside>
-
-      <main className="min-w-0 flex-1">
+    <main className="min-w-0 flex-1">
         {/* Hero：宽高比 2:1；与 hero image 同区域，左右各 160px padding，句子在中间撑满展示，两行放不下则缩小字号 */}
         <section
           className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8"
@@ -215,6 +200,30 @@ export default function HomePage() {
           </p>
         </footer>
       </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="flex min-h-screen bg-white text-black" id="top">
+      {/* 左侧导航 - 220px 固定 */}
+      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
+        <div className="flex flex-col border-b border-black px-5 py-10">
+          <a
+            href="#top"
+            className="flex w-40 items-center justify-center p-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity"
+          >
+            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
+              {`CALM `}
+              {`& `}
+              CRAZY
+            </h1>
+          </a>
+        </div>
+        <SidebarNav />
+      </aside>
+
+      <HomeMain />
     </div>
   );
 }

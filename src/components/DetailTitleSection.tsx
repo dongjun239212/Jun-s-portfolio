@@ -53,20 +53,21 @@ export function DetailTitleSection() {
       {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
       {showStickyBar && (
         <div
-          className="fixed left-0 right-0 top-0 z-20 bg-white/50 backdrop-blur-md md:left-[220px]"
+          className="fixed top-0 right-0 left-[220px] z-10 bg-white border-b border-solid border-[rgba(0,0,0,0.12)]"
           role="banner"
         >
-          <div className="mx-auto flex w-full max-w-[1680px] items-center gap-[10px] px-5 py-[30px] md:px-[60px]">
-          <Link
-            href="/"
-            className="flex shrink-0 items-center justify-center no-underline text-inherit hover:opacity-70 transition-opacity"
-            aria-label="Back to homepage"
-          >
-            <Icon name="arrow_back" size={32} className="text-black" aria-hidden />
-          </Link>
-          <h1 className="min-w-0 text-[24px] font-bold leading-[1.2] text-black">
-            {title}
-          </h1>
+          <div className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-2 px-5 py-3 md:px-[60px] md:py-[14px]">
+            <Link
+              href="/"
+              className={`${CARD_BUTTON_LIGHT} inline-flex items-center gap-2 no-underline text-black`}
+              aria-label="Back to homepage"
+            >
+              <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
+              <span>Back to homepage</span>
+            </Link>
+            <h1 className="min-w-0 text-[24px] font-bold leading-[1.2] text-black">
+              {title}
+            </h1>
           </div>
         </div>
       )}

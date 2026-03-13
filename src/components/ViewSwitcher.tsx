@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import HomePage from "@/app/home/HomePage";
-import { DetailPageContent } from "@/components/DetailPageContent";
+import { HomeMain } from "@/app/home/HomePage";
+import { DetailMain } from "@/components/DetailPageContent";
+import { SidebarNav } from "@/components/SidebarNav";
 import { getHomeScrollY, clearHomeScrollY } from "@/components/LinkToDetail";
 
 function getFromParam(): string | null {
@@ -57,21 +59,40 @@ export function ViewSwitcher() {
   }, [isDetail]);
 
   return (
-    <>
-      <div
-        style={{ display: isDetail ? "none" : "block" }}
-        className="min-h-screen"
-        aria-hidden={isDetail}
-      >
-        <HomePage />
+    <div className="flex min-h-screen bg-white text-black" id="top">
+      {/* 全局左侧导航壳，仅一份 */}
+      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
+        <div className="flex flex-col border-b border-black px-5 py-10">
+          <Link
+            href="/#top"
+            className="flex w-40 items-center justify-center p-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
+          >
+            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
+              {`CALM `}
+              {`& `}
+              CRAZY
+            </h1>
+          </Link>
+        </div>
+        <SidebarNav basePath={isDetail ? "/" : ""} activeSection={isDetail ? detailFromSection : null} />
+      </aside>
+
+      <div className="min-w-0 flex-1">
+        <div
+          style={{ display: isDetail ? "none" : "block" }}
+          className="min-h-screen"
+          aria-hidden={isDetail}
+        >
+          <HomeMain />
+        </div>
+        <div
+          style={{ display: isDetail ? "block" : "none" }}
+          className="min-h-screen"
+          aria-hidden={!isDetail}
+        >
+          <DetailMain detailFromSection={detailFromSection} />
+        </div>
       </div>
-      <div
-        style={{ display: isDetail ? "block" : "none" }}
-        className="min-h-screen"
-        aria-hidden={!isDetail}
-      >
-        <DetailPageContent detailFromSection={detailFromSection} />
-      </div>
-    </>
+    </div>
   );
 }

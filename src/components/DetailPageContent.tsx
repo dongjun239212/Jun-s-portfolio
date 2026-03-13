@@ -27,35 +27,28 @@ import detailStrategy3b from "@/assets/detail/detail-strategy-3b.png";
 
 type DetailPageContentProps = { detailFromSection?: string | null };
 
-export function DetailPageContent({ detailFromSection = null }: DetailPageContentProps) {
+export function DetailMain({}: DetailPageContentProps) {
   return (
-    <div className="flex min-h-screen bg-white text-black">
-      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
-        <div className="flex flex-col border-b border-black px-5 py-10">
-          <Link
-            href="/#top"
-            className="flex w-40 items-center justify-center p-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
-          >
-            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
-              {`CALM `}
-              {`& `}
-              CRAZY
-            </h1>
-          </Link>
-        </div>
-        <SidebarNav basePath="/" activeSection={detailFromSection} />
-      </aside>
-
       <main className="min-w-0 flex-1 flex flex-col w-full">
-        <section className="relative h-[480px] w-full shrink-0 overflow-hidden" aria-hidden>
-          <DetailImage src={detailHero} alt="" className="object-cover object-center size-full" fill priority />
+        <section
+          className="relative w-full shrink-0 overflow-hidden"
+          style={{ aspectRatio: "2 / 1" }}
+          aria-hidden
+        >
+          <DetailImage
+            src={detailHero}
+            alt=""
+            className="object-cover object-center size-full"
+            fill
+            priority
+          />
         </section>
         <div className="flex w-full max-w-[1680px] flex-1 flex-col mx-auto pb-[120px]">
           <Suspense fallback={<section className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"><div className="h-20 w-64 bg-black/5 rounded animate-pulse" /></section>}>
             <DetailTitleSection />
           </Suspense>
           <section className="flex flex-col gap-[20px] px-5 py-[40px] md:px-[60px]">
-            <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">1.</span><span className="">Background</span></h2>
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black">Background</h2>
             <p className="text-base leading-[1.3] text-black/65">
               Based on the extensive growth in the past two years through various measures to expand
               traffic and entry points and to complete basic functions, the overall data target of
@@ -70,7 +63,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
             </p>
           </section>
           <section className="flex flex-col gap-[20px] px-5 py-[40px] md:px-[60px]">
-            <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">2.</span><span className="">Goals</span></h2>
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black">Goals</h2>
             <div className="flex flex-col gap-[20px]">
               <div className="flex flex-col gap-[10px]">
                 <h3 className="text-[24px] font-bold leading-[1.2] text-black">Business goals</h3>
@@ -100,7 +93,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
           </section>
           <section className="flex flex-col gap-[40px] px-5 py-[40px] md:px-[60px] text-left">
             <div className="flex flex-col items-start gap-[20px]">
-              <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">3.</span><span className="">Design analysis</span></h2>
+              <h2 className="text-[32px] font-bold leading-[1.2] text-black">Design analysis</h2>
               <p className="text-base leading-[1.3] text-black/65">
                 We conduct systematic analysis and summary from three dimensions: User Research
                 reports, User Data Analysis, and analysis of non-China DTC competing products. While
@@ -177,7 +170,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
           </section>
           <section className="flex flex-col gap-[40px] px-5 py-[40px] md:px-[60px]">
             <div className="flex flex-col gap-[20px]">
-              <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">4.</span><span className="">Design Strategies</span></h2>
+              <h2 className="text-[32px] font-bold leading-[1.2] text-black">Design Strategies</h2>
               <p className="text-base leading-[1.3] text-black/65">
                 Based on the above user research, data, and competing product analysis, in terms of
                 design objectives, we mainly aim to help upgrade the business model of stores by
@@ -232,7 +225,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
             </div>
           </section>
           <section className="flex flex-col gap-[40px] px-5 py-[40px] md:px-[60px]">
-            <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">5.</span><span className="">Design proposal</span></h2>
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black">Design proposal</h2>
             <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
               <DetailImage src={detailProposalMain} alt="" className="object-cover object-center" fill />
             </div>
@@ -319,7 +312,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
             </div>
           </section>
           <section className="flex flex-col gap-[20px] px-5 py-[40px] md:px-[60px]">
-            <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">6.</span><span className="">Implement rhythm</span></h2>
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black">Implement rhythm</h2>
             <div className="flex flex-col gap-[20px]">
               <div className="flex flex-col gap-[10px]">
                 <h3 className="text-[24px] font-bold leading-[1.2] text-black">Business goals</h3>
@@ -336,7 +329,7 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
             </div>
           </section>
           <section className="flex flex-col gap-[20px] px-5 py-[40px] md:px-[60px]">
-            <h2 className="flex items-baseline text-[32px] font-bold leading-[1.2] text-black"><span className="min-w-0 shrink-[8] tabular-nums text-black/65 mr-3">7.</span><span className="">Appendix</span></h2>
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black">Appendix</h2>
             <ol className="detail-list list-decimal space-y-[10px] text-left text-base leading-[1.3] text-black/65">
               <li>design link</li>
               <li>design link</li>
@@ -350,6 +343,29 @@ export function DetailPageContent({ detailFromSection = null }: DetailPageConten
           </p>
         </footer>
       </main>
+  );
+}
+
+export function DetailPageContent({ detailFromSection = null }: DetailPageContentProps) {
+  return (
+    <div className="flex min-h-screen bg-white text-black">
+      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
+        <div className="flex flex-col border-b border-black px-5 py-10">
+          <Link
+            href="/#top"
+            className="flex w-40 items-center justify-center p-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
+          >
+            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
+              {`CALM `}
+              {`& `}
+              CRAZY
+            </h1>
+          </Link>
+        </div>
+        <SidebarNav basePath="/" activeSection={detailFromSection} />
+      </aside>
+
+      <DetailMain detailFromSection={detailFromSection} />
     </div>
   );
 }

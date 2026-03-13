@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SIDEBAR_NAV_LINK_ACTIVE, SIDEBAR_NAV_LINK_DEFAULT } from "@/lib/sidebarNavStyles";
-import { Icon } from "@/components/Icons";
 
 const LINKS = [
   { href: "#projects", label: "Projects", icon: "apps" },
@@ -15,11 +14,8 @@ const SECTION_IDS = ["projects", "thinking", "about"];
 
 const iconSizeClass = "h-6 w-6 shrink-0 sidebar-nav-icon";
 
-/** 实心灰 / 实心红，用内联 style 确保生效（避免 Tailwind 或继承导致偏淡） */
-const iconColor = (isActive: boolean) => (isActive ? "#dc2626" : "#737373"); // red-600 / neutral-500
-
 /** 桌面 Icon/Projects.svg 内联 */
-function ProjectsIcon({ color }: { color: string }) {
+function ProjectsIcon({ isActive }: { isActive: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +23,7 @@ function ProjectsIcon({ color }: { color: string }) {
       width={24}
       height={24}
       fill="none"
-      className={iconSizeClass}
-      style={{ color }}
+      className={`${iconSizeClass} ${isActive ? "text-red-600" : "text-neutral-500"} group-hover:text-red-600`}
       aria-hidden
     >
       <path
@@ -48,7 +43,7 @@ function ProjectsIcon({ color }: { color: string }) {
 }
 
 /** 桌面 Icon/Thinking.svg 内联 */
-function ThinkingIcon({ color }: { color: string }) {
+function ThinkingIcon({ isActive }: { isActive: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -56,8 +51,7 @@ function ThinkingIcon({ color }: { color: string }) {
       width={24}
       height={24}
       fill="none"
-      className={iconSizeClass}
-      style={{ color }}
+      className={`${iconSizeClass} ${isActive ? "text-red-600" : "text-neutral-500"} group-hover:text-red-600`}
       aria-hidden
     >
       <path
@@ -69,7 +63,7 @@ function ThinkingIcon({ color }: { color: string }) {
 }
 
 /** 桌面 Icon/About me.svg 内联，clipPath 用唯一 id 避免冲突 */
-function AboutMeIcon({ color }: { color: string }) {
+function AboutMeIcon({ isActive }: { isActive: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +71,7 @@ function AboutMeIcon({ color }: { color: string }) {
       width={24}
       height={24}
       fill="none"
-      className={iconSizeClass}
-      style={{ color }}
+      className={`${iconSizeClass} ${isActive ? "text-red-600" : "text-neutral-500"} group-hover:text-red-600`}
       aria-hidden
     >
       <defs>
@@ -166,12 +159,9 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
               href={`/${href}`}
               className={linkClass(isActive)}
             >
-              <Icon
-                name={icon as "apps" | "psychology" | "person"}
-                size={24}
-                className={`h-6 w-6 ${isActive ? "text-red-600" : "text-black/65"} group-hover:text-red-600`}
-                aria-hidden
-              />
+              {icon === "apps" && <ProjectsIcon isActive={isActive} />}
+              {icon === "psychology" && <ThinkingIcon isActive={isActive} />}
+              {icon === "person" && <AboutMeIcon isActive={isActive} />}
               {label}
             </Link>
           );
@@ -182,9 +172,9 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
             href={href}
             className={linkClass(isActive)}
           >
-            {icon === "apps" && <ProjectsIcon color={iconColor(isActive)} />}
-            {icon === "psychology" && <ThinkingIcon color={iconColor(isActive)} />}
-            {icon === "person" && <AboutMeIcon color={iconColor(isActive)} />}
+            {icon === "apps" && <ProjectsIcon isActive={isActive} />}
+            {icon === "psychology" && <ThinkingIcon isActive={isActive} />}
+            {icon === "person" && <AboutMeIcon isActive={isActive} />}
             {label}
           </a>
         );
