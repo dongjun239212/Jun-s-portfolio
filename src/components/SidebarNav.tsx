@@ -12,7 +12,8 @@ const LINKS = [
 
 const SECTION_IDS = ["projects", "thinking", "about"];
 
-const iconSizeClass = "h-6 w-6 shrink-0 sidebar-nav-icon";
+// 16px 图标尺寸
+const iconSizeClass = "h-4 w-4 shrink-0 sidebar-nav-icon";
 
 /** 桌面 Icon/Projects.svg 内联 */
 function ProjectsIcon({ isActive }: { isActive: boolean }) {
@@ -147,7 +148,7 @@ export function SidebarNav({ basePath = "", activeSection = null }: SidebarNavPr
     isActive ? SIDEBAR_NAV_LINK_ACTIVE : SIDEBAR_NAV_LINK_DEFAULT;
 
   return (
-    <nav className="flex flex-col gap-10 px-5 py-8">
+    <nav className="flex w-[180px] flex-col gap-8 px-4 py-8">
       {LINKS.map(({ href, label, icon }) => {
         const sectionId = href.slice(1);
         const isActive = basePath ? fromSection === sectionId : activeHash === href;

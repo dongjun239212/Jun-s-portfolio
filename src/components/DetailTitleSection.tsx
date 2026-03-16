@@ -53,10 +53,13 @@ export function DetailTitleSection() {
       {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
       {showStickyBar && (
         <div
-          className="fixed top-0 right-0 left-[220px] z-10 bg-white border-b border-solid border-[rgba(0,0,0,0.12)]"
+          className="fixed top-0 right-0 left-[180px] z-10 bg-white border-b border-solid border-[rgba(0,0,0,0.12)]"
           role="banner"
         >
-          <div className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-2 px-5 py-3 md:px-[60px] md:py-[14px]">
+          <div
+            className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-4 px-5 py-3 md:px-[60px] md:py-[14px]"
+            style={{ width: "100%" }}
+          >
             <Link
               href="/"
               className={`${CARD_BUTTON_LIGHT} inline-flex items-center gap-2 no-underline text-black`}

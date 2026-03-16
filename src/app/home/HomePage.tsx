@@ -207,15 +207,17 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen bg-white text-black" id="top">
       {/* 左侧导航 - 220px 固定 */}
-      <aside className="sticky top-0 flex h-screen w-[220px] shrink-0 flex-col border-r border-black">
-        <div className="flex flex-col border-b border-black px-5 py-10">
+      <aside className="sticky top-0 flex h-screen w-[180px] shrink-0 flex-col border-r border-black">
+        <div className="flex flex-col border-b border-black py-10">
           <a
             href="#top"
-            className="flex w-40 items-center justify-center p-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity"
+            className="flex w-full items-center justify-start px-4 py-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity"
           >
             <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
-              {`CALM `}
-              {`& `}
+              CALM
+              <br />
+              &
+              <br />
               CRAZY
             </h1>
           </a>
