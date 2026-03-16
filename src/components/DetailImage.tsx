@@ -20,25 +20,39 @@ export function DetailImage({
   priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
   const onError = useCallback(() => setFailed(true), []);
+
+  const onLoadingComplete = useCallback(() => {
+    setLoaded(true);
+  }, []);
+
   if (failed) {
     return (
       <div
         className={fill ? `absolute inset-0 ${className ?? ""}` : className}
-        style={{ backgroundColor: "#e5e5e5" }}
+        style={{ backgroundColor: "#f5f5f5" }}
         aria-hidden
       />
     );
   }
   return (
-    <Image
-      src={src}
-      alt={alt}
-      className={className}
-      fill={fill}
-      priority={priority}
-      onError={onError}
-      unoptimized
-    />
+    <div
+      className={fill ? `absolute inset-0 ${className ?? ""}` : className}
+      style={{ backgroundColor: "#f5f5f5" }}
+      aria-hidden={alt ? undefined : true}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        className={loaded ? "opacity-100 transition-opacity duration-300" : "opacity-0"}
+        fill={fill}
+        priority={priority}
+        onError={onError}
+        onLoadingComplete={onLoadingComplete}
+        unoptimized
+      />
+    </div>
   );
 }

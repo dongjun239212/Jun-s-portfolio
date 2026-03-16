@@ -20,32 +20,24 @@ export function DetailTitleSection() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section || typeof window === "undefined") return;
 
-    const HYSTERESIS = 8;
-    let ticking = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // 当主标题 section 完全滚出视口时才展示吸顶条，避免频繁抖动
+        setShowStickyBar(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.01,
+      },
+    );
 
-    const update = () => {
-      const rect = section.getBoundingClientRect();
-      const bottom = rect.bottom;
-      setShowStickyBar((prev) => {
-        if (bottom < -HYSTERESIS) return true;
-        if (bottom > HYSTERESIS) return false;
-        return prev;
-      });
-      ticking = false;
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
     };
-
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    update();
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -53,7 +45,7 @@ export function DetailTitleSection() {
       {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
       {showStickyBar && (
         <div
-          className="fixed top-0 right-0 left-[180px] z-10 bg-white border-b border-solid border-[rgba(0,0,0,0.12)]"
+          className="fixed top-0 right-0 left-[180px] z-10 bg-white/95 shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-[4px]"
           role="banner"
         >
           <div
