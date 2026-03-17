@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { BODY_PRIMARY, TEXT_SECTION_TITLE } from "@/lib/typography";
 
 /** Thinking 卡片：图片加载完成后淡入；从详情页返回时通过多次检查已缓存图片避免不显示 */
 export function ThinkingCard({
@@ -54,7 +55,7 @@ export function ThinkingCard({
   }, [imageSrcs.length]);
 
   return (
-    <article className="group relative flex aspect-[300/400] flex-col justify-end overflow-hidden rounded-none outline-none transition-shadow duration-200 hover:shadow-lg focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2 focus-within:shadow-lg px-5 pb-6 pt-[224px] bg-zinc-800">
+    <article className="group relative flex aspect-[300/400] flex-col justify-end overflow-hidden rounded-none outline-none transition-transform transition-shadow duration-200 ease-out hover:-translate-y-1 hover:shadow-lg focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2 focus-within:shadow-lg px-5 pb-6 pt-[224px] bg-zinc-800">
       <div ref={containerRef} className="absolute inset-0 pointer-events-none bg-[#f5f5f5]" aria-hidden>
         {/* 底层灰块 + 图片层：未全部加载时透明，避免出现马赛克或模糊 */}
         {imageSrcs.map((src, i) => (
@@ -81,15 +82,14 @@ export function ThinkingCard({
           }}
         />
       </div>
-      <div className="relative z-10 flex flex-col gap-4">
-        <h3 className="text-2xl font-bold leading-[1.25] text-white">
+      <div className="relative z-10 flex flex-col gap-4 transition-transform duration-200 ease-out group-hover:-translate-y-1">
+        <h3 className="text-2xl font-bold leading-[1.25] text-white sm:text-3xl">
           {title}
         </h3>
-        <p className="line-clamp-3 text-base leading-[1.3] text-white/75">
-          With the increasing complexity of stock management, implementing an
-          upgraded inventory solution is critical. This new system will enhance
-          tracking accuracy, automate replenishment processes, and provide
-          real-time analytics.
+        <p className="line-clamp-3 text-sm leading-relaxed text-white/80 md:text-base">
+          With the increasing complexity of stock management, implementing an upgraded
+          inventory solution is critical. This new system will enhance tracking accuracy,
+          automate replenishment processes, and provide real-time analytics.
         </p>
         <button
           type="button"

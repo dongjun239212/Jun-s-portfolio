@@ -49,7 +49,7 @@ export function ProjectCard({
   }, []);
 
   return (
-    <article className="group relative flex flex-1 flex-col rounded-none outline-none transition-shadow duration-200 focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2">
+    <article className="group relative flex flex-1 flex-col rounded-none outline-none transition-transform duration-200 ease-out hover:-translate-y-1 focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2">
       <div className="absolute inset-0 z-10 bg-black/[0.03] opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none rounded-none" aria-hidden />
       <div ref={containerRef} className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-[#f5f5f5]">
         <img

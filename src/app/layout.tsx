@@ -17,8 +17,8 @@ const playfairDisplay = Playfair_Display({
   display: "swap",
 });
 
-const SITE_NAME = "CALM & CRAZY | Albert Dong";
-const SITE_DESC = "Personal portfolio - UX Design & Design Thinking";
+const SITE_NAME = "CALM & CRAZY | Jun Dong";
+const SITE_DESC = "UX designer focusing on e-commerce experience and conversion.";
 // 上线后改为你的真实域名，例如 https://yourname.com
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_NAME,
   description: SITE_DESC,
-  keywords: ["portfolio", "UX design", "design thinking", "Albert Dong"],
-  authors: [{ name: "Albert Dong" }],
+  keywords: ["portfolio", "UX design", "e-commerce", "conversion", "Jun Dong"],
+  authors: [{ name: "Jun Dong" }],
   openGraph: {
     type: "website",
     locale: "en_US",

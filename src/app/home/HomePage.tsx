@@ -23,6 +23,7 @@ import { LinkToDetail } from "@/components/LinkToDetail";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SidebarNav } from "@/components/SidebarNav";
 import { ThinkingCard } from "@/components/ThinkingCard";
+import { BODY_PRIMARY, TEXT_SECTION_TITLE, TEXT_STAT_LABEL, TEXT_STAT_NUMBER } from "@/lib/typography";
 
 const PLACEHOLDER = {
   hero: heroImg as { src: string },
@@ -47,19 +48,24 @@ export function HomeMain() {
           className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8"
           style={{ aspectRatio: "2" }}
         >
-          <div className="absolute inset-0 pointer-events-none" aria-hidden>
+          <div className="absolute inset-0 pointer-events-none hero-bg-animated" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <p className="hero-quote relative z-10 w-full text-center text-xs font-bold leading-snug text-white sm:text-sm md:text-base lg:text-[56px]">
-            Weakness and ignorance are not the barriers to survival, but arrogance is.
-          </p>
+          <div className="relative z-10 flex w-full flex-col items-center gap-4 text-center text-white px-4 hero-content-animated">
+            <p className="hero-quote w-full text-sm font-bold leading-snug sm:text-base md:text-2xl lg:text-5xl xl:text-[64px]">
+              Weakness and ignorance are not the barriers to survival, but arrogance is.
+            </p>
+            <p className="text-sm font-medium leading-snug text-white/80 sm:text-base md:text-lg lg:text-xl">
+              UX designer focusing on store frameworks, shopping experience, and conversion for e-commerce products.
+            </p>
+          </div>
         </section>
 
         {/* KEY PROJECTS */}
         <section id="projects" className="border-b border-black">
           <div className="flex items-center justify-start px-10 pb-10 pt-[60px]">
-            <h2 className="text-4xl font-bold leading-[1.2] text-left">
+            <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               KEY PROJECTS
             </h2>
           </div>
@@ -102,7 +108,7 @@ export function HomeMain() {
         {/* DESIGN THINKING */}
         <section id="thinking" className="border-b border-black">
           <div className="flex items-center justify-start px-10 pt-16 pb-10">
-            <h2 className="text-4xl font-bold leading-[1.2] text-left">
+            <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               DESIGN THINKING
             </h2>
           </div>
@@ -118,27 +124,28 @@ export function HomeMain() {
         {/* ABOUT ME */}
         <section id="about" className="border-b border-black">
           <div className="flex items-center justify-start px-10 pb-10 pt-[60px]">
-            <h2 className="text-4xl font-bold leading-[1.2] text-left">
+            <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               ABOUT ME
             </h2>
           </div>
-          <div className="flex flex-col px-10 pb-[60px] pt-5">
-            <div className="bg-[#f5f5f5] p-10 md:p-[60px]">
-              <div className="flex w-full flex-col gap-[60px]">
+          {/* 小屏更紧凑；大屏回到“铺满”感的留白和宽度 */}
+          <div className="flex flex-col px-6 pb-[40px] pt-5 md:px-8 md:pb-[48px] lg:px-10 lg:pb-[60px]">
+            <div className="bg-[#f5f5f5] p-4 md:p-6 lg:p-10 xl:p-[60px]">
+              <div className="flex w-full flex-col gap-10 md:gap-12 lg:gap-[48px] xl:gap-[60px] lg:max-w-none">
                 {/* 简介 + 数据：Figma 同一块，仅一条底边 */}
-                <div className="flex flex-col gap-10 border-b border-black pb-[60px]">
-                  <div className="flex flex-col gap-5">
-                    <p className="text-[64px] font-bold leading-[1.25]">
+                <div className="flex flex-col gap-10 border-b border-black pb-[48px] md:pb-[60px]">
+                  <div className="flex flex-col gap-4 md:gap-5">
+                    <p className="max-w-[14ch] text-3xl font-bold leading-[1.25] sm:text-4xl md:text-5xl lg:text-[56px]">
                       Hey, I&apos;m Jun Dong.
                     </p>
-                    <p className="text-[48px] font-medium leading-[1.25]">
+                    <p className="max-w-[18ch] text-2xl font-medium leading-[1.25] sm:text-3xl md:text-[32px]">
                       Nice to meet you!
                     </p>
                   </div>
-                  <div className="grid gap-10 sm:grid-cols-3">
-                    <StatBlock number="8" label="Years" detail="I have 6 years work experience for UX design" />
-                    <StatBlock number="3" label="companys" detail="I have worked for 3 large different business IT companies" />
-                    <StatBlock number="12+" label="Projects" detail="I have successfully handled over 12 P00 design projects" />
+                  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <StatBlock number="8" label="Years" detail="I have 8 years of UX design experience across consumer and enterprise products." />
+                    <StatBlock number="3" label="Companies" detail="I have worked at 3 large internet companies in China." />
+                    <StatBlock number="12+" label="Projects" detail="I have led over 12 key design projects from 0 to 1 or major upgrades." />
                   </div>
                 </div>
 
@@ -147,11 +154,11 @@ export function HomeMain() {
                   <div className="flex gap-6 md:gap-8">
                     <div className="flex min-w-0 flex-1 flex-col pl-0">
                       <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/48">2021.05 - 2035.05</span>
+                        <span className="font-semibold tabular-nums text-black/60">2021.05 - 2035.05</span>
                         <span>TikTok</span>
                         <span className="font-semibold text-black/90">SENIOR UX DESIGNER</span>
                       </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/48 md:mt-4">
+                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
                         As the point of contact for the store and showcase domain, I spearheaded initiatives to enhance entrance traffic, optimize landing page conversion rates, and foster promotion and seller trust. I successfully elevated brand awareness through strategic projects, including a comprehensive revamp of the store&apos;s default homepage.
                       </p>
                     </div>
@@ -159,11 +166,11 @@ export function HomeMain() {
                   <div className="flex gap-6 md:gap-8">
                     <div className="flex min-w-0 flex-1 flex-col pl-0">
                       <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/48">2019.04 - 2021.01</span>
+                        <span className="font-semibold tabular-nums text-black/60">2019.04 - 2021.01</span>
                         <span>LIGHTINTHEBOX</span>
                         <span className="font-semibold text-black/90">UX DESIGNER</span>
                       </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/48 md:mt-4">
+                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
                         Accountable for the specialized visual and interactive design of the ezbuy and LITB shopping platforms, focusing on the iterative enhancements of the homepage, shopping cart interface, login and registration pages, as well as daily operational functionalities.
                       </p>
                     </div>
@@ -171,22 +178,31 @@ export function HomeMain() {
                   <div className="flex gap-6 md:gap-8">
                     <div className="flex min-w-0 flex-1 flex-col pl-0">
                       <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/48">2018.07 - 2019.01</span>
+                        <span className="font-semibold tabular-nums text-black/60">2018.07 - 2019.01</span>
                         <span>IQIYI</span>
                         <span className="font-semibold text-black/90">UI DESIGNER</span>
                       </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/48 md:mt-4">
+                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
                         Facilitate the daily iteration needs of the TVGO APP, ensuring thorough visual inspections and acceptance criteria are met for each version.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* 联系方式：Figma gap-[40px] text-[24px] bold */}
-                <div className="flex flex-wrap items-center gap-10 text-2xl font-bold">
-                  <span><span className="text-black/50">WeChat</span> dongjun 239212</span>
-                  <span><span className="text-black/50">Mobile</span> +86 150 7169 7874</span>
-                  <span><span className="text-black/50">eMail</span> dongjun239212@gmail.com</span>
+                {/* 联系方式：在小屏上拆行，大屏保持一行 */}
+                <div className="flex flex-col flex-wrap gap-4 text-lg font-bold sm:flex-row sm:items-center sm:gap-8 md:text-2xl">
+                  <span className="whitespace-nowrap">
+                    <span className="text-black/50">WeChat</span>{" "}
+                    <span className="break-all">dongjun 239212</span>
+                  </span>
+                  <span className="whitespace-nowrap">
+                    <span className="text-black/50">Mobile</span>{" "}
+                    <span className="break-all">+86 150 7169 7874</span>
+                  </span>
+                  <span className="whitespace-normal break-all">
+                    <span className="text-black/50">eMail</span>{" "}
+                    <span className="break-all">dongjun239212@gmail.com</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -242,12 +258,12 @@ function StatBlock({
   return (
     <div className="flex flex-col gap-2.5">
       <div className="flex items-baseline gap-2.5">
-        <span className="text-4xl font-bold tracking-[5.6px] leading-[64px]">
+        <span className={TEXT_STAT_NUMBER}>
           {number}
         </span>
-        <span className="text-2xl font-bold text-black/48">{label}</span>
+        <span className={TEXT_STAT_LABEL}>{label}</span>
       </div>
-      <p className="text-base font-medium leading-[1.5] text-black/48">
+      <p className={`max-w-[34ch] ${BODY_PRIMARY}`}>
         {detail}
       </p>
     </div>

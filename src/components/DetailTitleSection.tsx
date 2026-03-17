@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CARD_BUTTON_LIGHT } from "@/lib/cardButtonStyles";
+import { TEXT_SECTION_TITLE } from "@/lib/typography";
 import { Icon } from "@/components/Icons";
 
 const DEFAULT_TITLE = "Shop framework revamp";
@@ -45,11 +46,11 @@ export function DetailTitleSection() {
       {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
       {showStickyBar && (
         <div
-          className="fixed top-0 right-0 left-[180px] z-10 bg-white/95 shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-[4px]"
+          className="fixed top-0 right-0 left-[180px] z-10 bg-white/95 shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-[4px] sticky-bar-animated"
           role="banner"
         >
           <div
-            className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-4 px-5 py-3 md:px-[60px] md:py-[14px]"
+            className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-4 px-5 py-3 md:px-[60px] md:py-[24px]"
             style={{ width: "100%" }}
           >
             <Link
@@ -60,7 +61,7 @@ export function DetailTitleSection() {
               <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
               <span>Back to homepage</span>
             </Link>
-            <h1 className="min-w-0 text-[24px] font-bold leading-[1.2] text-black">
+            <h1 className={`min-w-0 text-xl font-bold leading-tight text-black md:text-2xl`}>
               {title}
             </h1>
           </div>
@@ -80,7 +81,7 @@ export function DetailTitleSection() {
           <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
           <span>Back to homepage</span>
         </Link>
-        <h1 className="min-w-0 text-[48px] font-bold leading-[1.2] text-black">
+        <h1 className={`min-w-0 ${TEXT_SECTION_TITLE}`}>
           {title}
         </h1>
       </section>
