@@ -75,7 +75,7 @@ nextjs-portal {
   /* slogan：控制行数，避免小屏版式失衡 */
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   overflow: hidden;
   text-wrap: balance;
 }

@@ -45,8 +45,20 @@ export function DetailTitleSection({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // 当主标题 section 完全滚出视口时才展示吸顶条，避免频繁抖动
-        setShowStickyBar(!entry.isIntersecting);
+        // 期望行为：
+        // 1) 主标题在视口“下方”（首屏时常见）=> 不显示吸顶条
+        // 2) 主标题已从视口顶部“往上滚出”（越过顶部）=> 显示吸顶条
+        // 3) 主标题重新回到视口 => 隐藏吸顶条
+        //
+        // IntersectionObserver 的 isIntersecting 为 false 仅表示“不相交/完全离开”；
+        // 还需要 boundingClientRect.top 来区分“在下方”还是“在上方”。
+        if (entry.isIntersecting) {
+          setShowStickyBar(false);
+          return;
+        }
+
+        const isAboveViewport = entry.boundingClientRect.top < 0;
+        setShowStickyBar(isAboveViewport);
       },
       {
         root: null,

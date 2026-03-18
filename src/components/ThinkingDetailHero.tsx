@@ -48,7 +48,10 @@ function ThinkingDetailHeroInner({ imageSrcs }: { imageSrcs: string[] }) {
   }, [imageSrcs.length]);
 
   return (
-    <section className="relative w-full shrink-0 overflow-hidden bg-[var(--surface-muted)]" style={{ aspectRatio: "6 / 1" }} aria-hidden>
+    <section
+      className="relative w-full shrink-0 overflow-hidden bg-[var(--surface-muted)] aspect-[6/1] max-md:aspect-[4/3]"
+      aria-hidden
+    >
       {imageSrcs.length > 0 ? (
         <>
           <div ref={containerRef} className="absolute inset-0" aria-hidden>

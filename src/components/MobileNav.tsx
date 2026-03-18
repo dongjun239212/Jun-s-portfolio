@@ -46,7 +46,7 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
       <header className="fixed left-0 right-0 top-0 z-50 flex h-14 items-center justify-between border-b border-black bg-white px-5 md:hidden">
         <Link
           href="/#top"
-          className="text-base font-bold leading-tight text-black no-underline"
+          className="text-2xl font-bold leading-tight text-black no-underline"
           onClick={() => setOpen(false)}
         >
           CALM & CRAZY

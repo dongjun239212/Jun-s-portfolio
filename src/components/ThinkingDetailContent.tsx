@@ -26,7 +26,7 @@ export function ThinkingDetailContent() {
 
   if (!topic) {
     return (
-      <section className="flex flex-col gap-6 px-5 py-[60px] md:px-[60px]">
+      <section className="flex flex-col gap-6 px-5 py-[16px] md:px-[60px]">
         <h2 className={TEXT_SUBTITLE}>Thinking</h2>
         <p className={BODY_PRIMARY}>
           This article couldn&apos;t be found. Please return to the homepage and open a Thinking card again.
@@ -53,7 +53,7 @@ export function ThinkingDetailContent() {
 
   return (
     <article id="thinking-article" className="flex flex-col gap-10">
-      <section className="flex flex-col gap-4 px-5 py-[60px] md:px-[60px]">
+      <section className="flex flex-col gap-4 px-5 py-[16px] md:px-[60px]">
         <div className="mx-auto w-full max-w-[1440px]">
           <div className="mx-auto max-w-[96ch]">
             <div className="mt-0 mb-0 rounded-none bg-[var(--surface-muted)] p-5 md:p-7">

@@ -37,10 +37,9 @@ const THINKING_CARDS = THINKING_TOPICS.map((t, idx) => ({
 export function HomeMain() {
   return (
     <main className="min-w-0 flex-1">
-        {/* Hero：宽高比 2:1；与 hero image 同区域，左右各 160px padding，句子在中间撑满展示，两行放不下则缩小字号 */}
+        {/* Hero：默认宽高比 2:1；小屏改为 1:1（更贴合手机竖屏展示） */}
         <section
-          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8"
-          style={{ aspectRatio: "2" }}
+          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8 aspect-[2/1] max-md:aspect-[1/1]"
         >
           <div className="absolute inset-0 pointer-events-none hero-bg-animated" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />
@@ -49,7 +48,7 @@ export function HomeMain() {
           <div className="relative z-10 mx-auto flex w-full flex-col items-center gap-2 px-4 text-center text-white hero-content-animated">
             <HeroQuote
               text="Weakness and ignorance are not the barriers to survival, but arrogance is."
-              className="hero-quote w-full font-bold leading-snug text-[clamp(20px,3.6vw,64px)]"
+              className="hero-quote w-full font-bold leading-snug text-[clamp(32px,3.6vw,64px)]"
             />
           </div>
         </section>
