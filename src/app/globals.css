@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface-muted: #f5f5f5;
   /* 区块水平留白：小屏紧凑、md+ 与侧栏节奏一致 */
   --section-px: 1.5rem;
   --section-px-md: 2.5rem;

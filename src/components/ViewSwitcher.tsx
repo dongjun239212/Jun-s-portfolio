@@ -1,34 +1,24 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
 import { HomeMain } from "@/app/home/HomePage";
 import { DetailMain } from "@/components/DetailPageContent";
 import { PortfolioShell } from "@/components/PortfolioShell";
 import { getHomeScrollY, clearHomeScrollY } from "@/components/LinkToDetail";
-
-function getFromParam(): string | null {
-  if (typeof window === "undefined") return null;
-  const params = new URLSearchParams(window.location.search);
-  return params.get("from");
-}
 
 /**
  * 首页与详情页双视图常驻 DOM，仅通过 display 切换显示。
  * - 点击「Back to homepage」返回首页：恢复前序页面的滚动位置（由 LinkToDetail 写入 sessionStorage）。
  * - 点击侧栏导航（Projects / Thinking / About me）返回首页：定位到对应 section 的初始位置（hash 锚点）。
  * - 从 Projects/Thinking 进入详情页时，侧栏高亮对应项（通过 URL from 参数传入）。
- * 使用 window.location 读取 from 参数，避免 useSearchParams 导致 Suspense 一直显示 Loading。
  */
 export function ViewSwitcher() {
   const pathname = usePathname();
-  const [detailFromSection, setDetailFromSection] = useState<string | null>(null);
+  const params = useSearchParams();
   const isDetail = pathname === "/detail";
 
-  useEffect(() => {
-    if (isDetail) setDetailFromSection(getFromParam());
-    else setDetailFromSection(null);
-  }, [isDetail]);
+  const detailFromSection = useMemo(() => (isDetail ? params.get("from") : null), [isDetail, params]);
 
   useEffect(() => {
     if (isDetail) {

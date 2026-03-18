@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { NAV_LINKS } from "@/lib/navLinks";
-import { SIDEBAR_NAV_LINK_ACTIVE, SIDEBAR_NAV_LINK_DEFAULT } from "@/lib/sidebarNavStyles";
+import {
+  MOBILE_PANEL_NAV_LINK_ACTIVE,
+  MOBILE_PANEL_NAV_LINK_DEFAULT,
+} from "@/lib/sidebarNavStyles";
 import { Icon } from "@/components/Icons";
 
 type Props = {
@@ -17,18 +20,15 @@ type Props = {
 export function MobileNav({ isDetail, detailFromSection }: Props) {
   const [open, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const openEffective = isDetail ? false : open;
 
   useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
+    if (openEffective) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [isDetail]);
+  }, [openEffective]);
 
   // 同步 URL hash（打开菜单时也能看到当前 section）
   useEffect(() => {
@@ -39,11 +39,11 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
   }, []);
 
   const linkClass = (isActive: boolean) =>
-    `${isActive ? SIDEBAR_NAV_LINK_ACTIVE : SIDEBAR_NAV_LINK_DEFAULT} text-lg`;
+    `${isActive ? MOBILE_PANEL_NAV_LINK_ACTIVE : MOBILE_PANEL_NAV_LINK_DEFAULT} text-lg`;
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 flex h-14 items-center justify-between border-b border-black bg-white px-4 md:hidden">
+      <header className="fixed left-0 right-0 top-0 z-50 flex h-14 items-center justify-between border-b border-black bg-white px-5 md:hidden">
         <Link
           href="/#top"
           className="text-base font-bold leading-tight text-black no-underline"
@@ -53,14 +53,14 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
         </Link>
         <button
           type="button"
-          className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-black/15 bg-white text-black"
-          aria-expanded={open}
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-white text-black"
+          aria-expanded={openEffective}
           aria-controls="mobile-nav-panel"
-          aria-label={open ? "关闭菜单" : "打开菜单"}
+          aria-label={openEffective ? "关闭菜单" : "打开菜单"}
           onClick={() => setOpen((o) => !o)}
         >
           <span className="sr-only">菜单</span>
-          {open ? (
+          {openEffective ? (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
@@ -72,7 +72,7 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
         </button>
       </header>
 
-      {open && (
+      {openEffective && (
         <div
           id="mobile-nav-panel"
           className="mobile-overlay-animated fixed inset-0 z-40 bg-black/40 pt-14 md:hidden"
@@ -82,7 +82,7 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
           onClick={() => setOpen(false)}
         >
           <nav
-            className="mobile-panel-animated flex h-[calc(100dvh-3.5rem)] flex-col gap-1 overflow-y-auto border-t border-black/10 bg-white px-3 py-4 shadow-lg"
+            className="mobile-panel-animated flex h-[calc(100dvh-3.5rem)] flex-col gap-8 overflow-y-auto border-t border-black/10 bg-white px-2 py-8 shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             {NAV_LINKS.map(({ href, label, icon }) => {
@@ -99,10 +99,10 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
                     onClick={() => setOpen(false)}
                   >
                     <span
-                      className="mobile-nav-item-animated inline-flex w-full items-center gap-1.5"
+                      className="mobile-nav-item-animated inline-flex w-full items-center gap-2"
                       style={{ animationDelay: `${delayMs}ms` }}
                     >
-                      <Icon name={icon} size={18} className="sidebar-nav-icon -translate-y-[0.5px]" aria-hidden />
+                      <Icon name={icon} size={20} className="sidebar-nav-icon -translate-y-[0.5px]" aria-hidden />
                       {label}
                     </span>
                   </Link>
@@ -111,10 +111,10 @@ export function MobileNav({ isDetail, detailFromSection }: Props) {
               return (
                 <a key={href} href={href} className={linkClass(isActive)} onClick={() => setOpen(false)}>
                   <span
-                    className="mobile-nav-item-animated inline-flex w-full items-center gap-1.5"
+                    className="mobile-nav-item-animated inline-flex w-full items-center gap-2"
                     style={{ animationDelay: `${delayMs}ms` }}
                   >
-                    <Icon name={icon} size={18} className="sidebar-nav-icon -translate-y-[0.5px]" aria-hidden />
+                    <Icon name={icon} size={20} className="sidebar-nav-icon -translate-y-[0.5px]" aria-hidden />
                     {label}
                   </span>
                 </a>

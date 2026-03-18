@@ -7,13 +7,6 @@ const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
 const heroImg = { src: `${BASE_PATH}/hero-watercolor.png` } as const;
 import projectPlaceholder from "@/assets/placeholder-project.jpg";
 import thinkingPlaceholder from "@/assets/placeholder-thinking.jpg";
-import thinkingImg1 from "@/assets/thinking/thinking-7f12ea1300756f144a0fb5daaf68dbfc01103a46.png";
-import thinkingImg2 from "@/assets/thinking/thinking-2a85d4c6629fe190763e2c6aba62ff22e65fcbf1.png";
-import thinkingImg3 from "@/assets/thinking/thinking-c2c8871fb352004eedca2b15978708e9f32e4026.png";
-import thinkingImg4 from "@/assets/thinking/thinking-6df743fc239d2db76126f65cd074f9618d56f5cd.png";
-import thinkingImg5 from "@/assets/thinking/thinking-0d3a0ea1b442a139bfcc3fd041d34d03a84627a5.png";
-import thinkingImg6 from "@/assets/thinking/thinking-a3129a53e4026333677575944aa4c6187eb2c94a.png";
-import thinkingImg7 from "@/assets/thinking/thinking-95e962aad3f70bfa82a22777cdf7e78f783e53e0.png";
 import keyProject1 from "@/assets/key-project-1.png";
 import keyProject2 from "@/assets/key-project-2.png";
 import keyProject3 from "@/assets/key-project-3.png";
@@ -25,6 +18,7 @@ import { PortfolioShell } from "@/components/PortfolioShell";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ThinkingCard } from "@/components/ThinkingCard";
 import { BODY_PRIMARY, TEXT_SECTION_TITLE, TEXT_STAT_LABEL, TEXT_STAT_NUMBER } from "@/lib/typography";
+import { THINKING_TOPICS } from "@/lib/thinkingTopics";
 
 const PLACEHOLDER = {
   hero: heroImg as { src: string },
@@ -32,49 +26,13 @@ const PLACEHOLDER = {
   thinking: thinkingPlaceholder as { src: string },
 };
 
-const THINKING_CARDS: {
-  title: string;
-  imageSrcs: string[];
-  gradientFrom: string;
-  blurb: string;
-}[] = [
-  {
-    title: "Store experience insights",
-    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src],
-    gradientFrom: "29.625%",
-    blurb: "Synthesizing behavioral data and qualitative research to refine browse-to-buy flows and shelf-level clarity.",
-  },
-  {
-    title: "Entry & conversion design",
-    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src],
-    gradientFrom: "29.625%",
-    blurb: "Reducing friction from first touch to intent—landing structure, CTAs, and progressive disclosure tuned for conversion.",
-  },
-  {
-    title: "Merchant trust & grading",
-    imageSrcs: [(thinkingImg4 as { src: string }).src],
-    gradientFrom: "37.403%",
-    blurb: "Signals and transparency that help buyers trust sellers while keeping grading fair and actionable for operators.",
-  },
-  {
-    title: "Traffic and discovery",
-    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src, (thinkingImg5 as { src: string }).src],
-    gradientFrom: "29.625%",
-    blurb: "Connecting discovery surfaces with store identity so the right shops surface without noisy or duplicate exposure.",
-  },
-  {
-    title: "Landing page optimization",
-    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src, (thinkingImg6 as { src: string }).src],
-    gradientFrom: "29.625%",
-    blurb: "Iterating hero, proof, and hierarchy so campaign landings match user intent and measurable funnel outcomes.",
-  },
-  {
-    title: "Inventory management system upgrade",
-    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg6 as { src: string }).src, (thinkingImg7 as { src: string }).src],
-    gradientFrom: "29.625%",
-    blurb: "Operational dashboards and alerts that scale with catalog complexity—accuracy first, then speed for merchants.",
-  },
-];
+const THINKING_CARDS = THINKING_TOPICS.map((t, idx) => ({
+  slug: t.slug,
+  title: t.title,
+  imageSrcs: t.imageSrcs ?? [],
+  gradientFrom: "29.625%",
+  blurb: t.blurb,
+}));
 
 export function HomeMain() {
   return (
@@ -148,7 +106,11 @@ export function HomeMain() {
           </div>
           <div className="grid gap-10 px-[var(--section-px)] pb-16 pt-5 md:grid-cols-2 lg:grid-cols-3">
             {THINKING_CARDS.map((card, key) => (
-              <LinkToDetail key={key} href={`/detail?title=${encodeURIComponent(card.title)}&from=thinking`} className="block no-underline text-inherit">
+              <LinkToDetail
+                key={key}
+                href={`/detail?from=thinking&thinking=${encodeURIComponent(card.slug)}&title=${encodeURIComponent(card.title)}`}
+                className="block no-underline text-inherit"
+              >
                 <ThinkingCard
                   title={card.title}
                   imageSrcs={card.imageSrcs}
@@ -168,7 +130,7 @@ export function HomeMain() {
             </h2>
           </div>
           <div className="flex flex-col px-[var(--section-px)] pb-10 pt-5 md:pb-12 lg:pb-[60px]">
-            <div className="bg-[#f5f5f5] p-4 md:p-6 lg:p-10 xl:p-[60px]">
+            <div className="bg-[var(--surface-muted)] p-4 md:p-6 lg:p-10 xl:p-[60px]">
               <div className="flex w-full flex-col gap-10 md:gap-12 lg:gap-[48px] xl:gap-[60px] lg:max-w-none">
                 {/* 简介 + 数据：Figma 同一块，仅一条底边 */}
                 <div className="flex flex-col gap-10 border-b border-black pb-[48px] md:pb-[60px]">

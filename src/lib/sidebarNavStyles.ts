@@ -5,3 +5,8 @@ export const SIDEBAR_NAV_LINK_BASE =
 /** 非选中用实心灰，与图标一致，避免透明度叠加导致偏淡 */
 export const SIDEBAR_NAV_LINK_DEFAULT = `${SIDEBAR_NAV_LINK_BASE} text-neutral-500`;
 export const SIDEBAR_NAV_LINK_ACTIVE = `${SIDEBAR_NAV_LINK_BASE} text-red-600`;
+
+/** 小屏全屏菜单内链接：左右 12px，与侧栏 px-4 区分 */
+const MOBILE_PANEL_NAV_LINK_BASE = SIDEBAR_NAV_LINK_BASE.replace("px-4", "px-3");
+export const MOBILE_PANEL_NAV_LINK_DEFAULT = `${MOBILE_PANEL_NAV_LINK_BASE} text-neutral-500`;
+export const MOBILE_PANEL_NAV_LINK_ACTIVE = `${MOBILE_PANEL_NAV_LINK_BASE} text-red-600`;

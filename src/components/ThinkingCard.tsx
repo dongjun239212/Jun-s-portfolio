@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { CARD_BUTTON_DARK } from "@/lib/cardButtonStyles";
 
 /** Thinking 卡片：图片加载完成后淡入；从详情页返回时通过多次检查已缓存图片避免不显示 */
 export function ThinkingCard({
@@ -55,7 +56,7 @@ export function ThinkingCard({
 
   return (
     <article className="group relative flex aspect-[300/400] flex-col justify-end overflow-hidden rounded-none bg-zinc-800 px-5 pb-6 pt-[224px] outline-none transition-transform transition-shadow duration-200 ease-out hover:-translate-y-1 hover:shadow-lg focus-within:shadow-lg focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2">
-      <div ref={containerRef} className="pointer-events-none absolute inset-0 bg-[#f5f5f5]" aria-hidden>
+      <div ref={containerRef} className="pointer-events-none absolute inset-0 bg-[var(--surface-muted)]" aria-hidden>
         {imageSrcs.map((src, i) => (
           <img
             key={i}
@@ -69,7 +70,7 @@ export function ThinkingCard({
           />
         ))}
         <div
-          className={`absolute inset-0 z-10 bg-[#f5f5f5] transition-opacity duration-200 ${allLoaded ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 z-10 bg-[var(--surface-muted)] transition-opacity duration-200 ${allLoaded ? "opacity-0" : "opacity-100"}`}
           aria-hidden
         />
         <div
@@ -82,10 +83,7 @@ export function ThinkingCard({
       <div className="relative z-10 flex flex-col gap-4 transition-transform duration-200 ease-out group-hover:-translate-y-1">
         <h3 className="text-2xl font-bold leading-[1.25] text-white sm:text-3xl">{title}</h3>
         <p className="line-clamp-3 text-sm leading-relaxed text-white/80 md:text-base">{blurb}</p>
-        <span
-          className="inline-flex w-fit rounded-full bg-white/40 px-4 py-2 text-sm font-semibold text-white"
-          aria-hidden="true"
-        >
+        <span className={CARD_BUTTON_DARK} aria-hidden="true">
           Discover more
         </span>
       </div>

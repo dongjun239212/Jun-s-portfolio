@@ -32,7 +32,7 @@ export function DetailImage({
     return (
       <div
         className={fill ? `absolute inset-0 ${className ?? ""}` : className}
-        style={{ backgroundColor: "#f5f5f5" }}
+        style={{ backgroundColor: "var(--surface-muted)" }}
         aria-hidden
       />
     );
@@ -40,7 +40,7 @@ export function DetailImage({
   return (
     <div
       className={fill ? `absolute inset-0 ${className ?? ""}` : className}
-      style={{ backgroundColor: "#f5f5f5" }}
+      style={{ backgroundColor: "var(--surface-muted)" }}
       aria-hidden={alt ? undefined : true}
     >
       <Image

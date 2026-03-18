@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { TikTok_Sans, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import { NextJsPortalFix } from "@/components/NextJsPortalFix";
 import "./globals.css";
 
@@ -58,8 +59,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${tiktokSans.variable} ${playfairDisplay.variable}`}>
-      <body className="antialiased">
+    <html
+      lang="en"
+      className={`${tiktokSans.variable} ${playfairDisplay.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <Script
+          id="strip-cursor-hydration-attrs"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+(() => {
+  try {
+    const ATTR = "data-cursor-ref";
+    const els = document.querySelectorAll("[" + ATTR + "]");
+    for (const el of els) el.removeAttribute(ATTR);
+  } catch {}
+})();`,
+          }}
+        />
+      </head>
+      <body className="antialiased" suppressHydrationWarning>
         {children}
         {/* 覆盖 Next.js 注入的 nextjs-portal 定位，强制固定到视口左上角，避免 top: 11415px 等错误位置 */}
         <style dangerouslySetInnerHTML={{ __html: `nextjs-portal{position:fixed!important;top:0!important;left:0!important;margin:0!important;z-index:99999;}` }} />

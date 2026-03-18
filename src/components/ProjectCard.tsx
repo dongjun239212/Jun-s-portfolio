@@ -51,7 +51,10 @@ export function ProjectCard({
   return (
     <article className="group relative flex flex-1 flex-col rounded-none outline-none transition-transform duration-200 ease-out hover:-translate-y-1 focus-within:ring-2 focus-within:ring-black/20 focus-within:ring-offset-2">
       <div className="absolute inset-0 z-10 bg-black/[0.03] opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none rounded-none" aria-hidden />
-      <div ref={containerRef} className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-[#f5f5f5]">
+      <div
+        ref={containerRef}
+        className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-[var(--surface-muted)]"
+      >
         <img
           alt={title}
           src={imageSrc}
@@ -63,7 +66,7 @@ export function ProjectCard({
         />
         {/* 未加载时灰色占位盖在最上层，加载完成后淡出，与 Thinking 卡片一致 */}
         <div
-          className={`absolute inset-0 z-10 bg-[#f5f5f5] transition-opacity duration-200 ${loaded ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 z-10 bg-[var(--surface-muted)] transition-opacity duration-200 ${loaded ? "opacity-0" : "opacity-100"}`}
           aria-hidden
         />
       </div>

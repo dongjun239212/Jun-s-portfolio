@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { DetailImage } from "@/components/DetailImage";
 import { DetailTitleSection } from "@/components/DetailTitleSection";
+import { ThinkingDetailContent } from "@/components/ThinkingDetailContent";
+import { ThinkingDetailHero } from "@/components/ThinkingDetailHero";
 import { SidebarNav } from "@/components/SidebarNav";
 import detailHero from "@/assets/detail/detail-hero.png";
 import detailUserResearch from "@/assets/detail/detail-user-research.png";
@@ -28,70 +30,78 @@ import { BODY_PRIMARY, TEXT_LABEL, TEXT_SECTION_TITLE, TEXT_SUBTITLE } from "@/l
 
 type DetailPageContentProps = { detailFromSection?: string | null };
 
-export function DetailMain({}: DetailPageContentProps) {
+export function DetailMain({ detailFromSection = null }: DetailPageContentProps) {
+  const isThinkingDetail = detailFromSection === "thinking";
   return (
       <main className="min-w-0 flex-1 flex flex-col w-full">
-        <section
-          className="relative w-full shrink-0 overflow-hidden"
-          style={{ aspectRatio: "6 / 1" }}
-          aria-hidden
-        >
-          <DetailImage
-            src={detailHero}
-            alt=""
-            className="object-cover object-center size-full"
-            fill
-            priority
-          />
-        </section>
+        {isThinkingDetail ? (
+          <ThinkingDetailHero />
+        ) : (
+          <section className="relative w-full shrink-0 overflow-hidden" style={{ aspectRatio: "6 / 1" }} aria-hidden>
+            <DetailImage src={detailHero} alt="" className="object-cover object-center size-full" fill priority />
+          </section>
+        )}
         <div className="flex w-full max-w-[1680px] flex-1 flex-col mx-auto pb-[120px]">
-          <Suspense fallback={<section className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"><div className="h-20 w-64 rounded bg-black/5 animate-pulse" /></section>}>
-            <DetailTitleSection />
+          <Suspense
+            fallback={
+              <section className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]">
+                <div className="h-20 w-64 animate-pulse rounded bg-black/5" />
+              </section>
+            }
+          >
+            <DetailTitleSection
+              maxWidthClass={isThinkingDetail ? "max-w-[1440px]" : "max-w-[1680px]"}
+              innerMaxWidthClass={isThinkingDetail ? "max-w-[96ch]" : undefined}
+            />
           </Suspense>
-          <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
-            <h2 className={TEXT_SECTION_TITLE}>Background</h2>
-            <p className={BODY_PRIMARY}>
-              Based on the extensive growth in the past two years through various measures to expand
-              traffic and entry points and to complete basic functions, the overall data target of
-              surpassing Douyin&apos;s share has been achieved (TTS store GMV accounts for 10.5% of
-              the overall market, while Douyin store GMV accounts for about 7% of the overall
-              market). In order to make the store&apos;s private domain mentality more in line with
-              local user habits, further leverage the attractiveness of stores, especially strategic
-              key merchants, to new customers and the stickiness to old customers&apos; repeat
-              purchases through refined experience design, systematic Data Analysis and thinking have
-              been conducted on the internal and external links of the store to seek some new growth
-              opportunities.
-            </p>
-          </section>
-          <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
-            <h2 className={TEXT_SECTION_TITLE}>Goals</h2>
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col gap-3">
-                <h3 className={TEXT_SUBTITLE}>Business goals</h3>
+          {isThinkingDetail ? (
+            <ThinkingDetailContent />
+          ) : (
+            <>
+              <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
+                <h2 className={TEXT_SECTION_TITLE}>Background</h2>
                 <p className={BODY_PRIMARY}>
-                  Through the end-to-end experience upgrade of the store, strengthening entry
-                  perception and improving service efficiency, we can achieve precise matching between
-                  traffic intent and service scenarios, ultimately driving long-term and large-scale
-                  growth of GMV for key merchants.
+                  Based on the extensive growth in the past two years through various measures to expand
+                  traffic and entry points and to complete basic functions, the overall data target of
+                  surpassing Douyin&apos;s share has been achieved (TTS store GMV accounts for 10.5% of
+                  the overall market, while Douyin store GMV accounts for about 7% of the overall
+                  market). In order to make the store&apos;s private domain mentality more in line with
+                  local user habits, further leverage the attractiveness of stores, especially strategic
+                  key merchants, to new customers and the stickiness to old customers&apos; repeat
+                  purchases through refined experience design, systematic Data Analysis and thinking have
+                  been conducted on the internal and external links of the store to seek some new growth
+                  opportunities.
                 </p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <h3 className={TEXT_SUBTITLE}>Design goals</h3>
-                <p className={BODY_PRIMARY}>
-                  Through experience optimization from the store entrance to the store&apos;s service
-                  delivery and exploration of design opportunity points, we help upgrade the
-                  store&apos;s business model, ultimately achieving the win-win goal of business GMV
-                  growth and user experience optimization.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <h3 className={TEXT_SUBTITLE}>Success metrics</h3>
-                <p className={BODY_PRIMARY}>
-                  Store GMV +X%, Store CO & IPO +X%, store NPSr (brand perception/aesthetics) +X%.
-                </p>
-              </div>
-            </div>
-          </section>
+              </section>
+              <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
+                <h2 className={TEXT_SECTION_TITLE}>Goals</h2>
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-3">
+                    <h3 className={TEXT_SUBTITLE}>Business goals</h3>
+                    <p className={BODY_PRIMARY}>
+                      Through the end-to-end experience upgrade of the store, strengthening entry
+                      perception and improving service efficiency, we can achieve precise matching between
+                      traffic intent and service scenarios, ultimately driving long-term and large-scale
+                      growth of GMV for key merchants.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <h3 className={TEXT_SUBTITLE}>Design goals</h3>
+                    <p className={BODY_PRIMARY}>
+                      Through experience optimization from the store entrance to the store&apos;s service
+                      delivery and exploration of design opportunity points, we help upgrade the
+                      store&apos;s business model, ultimately achieving the win-win goal of business GMV
+                      growth and user experience optimization.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <h3 className={TEXT_SUBTITLE}>Success metrics</h3>
+                    <p className={BODY_PRIMARY}>
+                      Store GMV +X%, Store CO & IPO +X%, store NPSr (brand perception/aesthetics) +X%.
+                    </p>
+                  </div>
+                </div>
+              </section>
           <section className="flex flex-col gap-10 px-5 py-10 md:px-[60px] text-left">
             <div className="flex flex-col items-start gap-6">
               <h2 className={TEXT_SECTION_TITLE}>Design analysis</h2>
@@ -337,6 +347,8 @@ export function DetailMain({}: DetailPageContentProps) {
               <li>design link</li>
             </ol>
           </section>
+            </>
+          )}
         </div>
         <footer className="flex w-full items-center justify-center border-t border-black px-10 py-16">
           <p className="font-playfair text-center text-2xl font-bold italic leading-[1.2]">
