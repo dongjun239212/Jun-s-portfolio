@@ -53,9 +53,9 @@ export function ProjectCard({
       <div className="absolute inset-0 z-10 bg-black/[0.03] opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none rounded-none" aria-hidden />
       <div ref={containerRef} className="relative aspect-[540/300] w-full shrink-0 overflow-hidden bg-[#f5f5f5]">
         <img
-          alt=""
+          alt={title}
           src={imageSrc}
-          className={`absolute inset-0 z-0 size-full object-cover transition-opacity duration-200 ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 z-0 size-full object-cover transition-[opacity,transform] duration-300 ease-out will-change-transform motion-reduce:transition-none group-hover:scale-[1.02] ${loaded ? "opacity-100" : "opacity-0"}`}
           loading="lazy"
           decoding="async"
           onLoad={onLoad}
@@ -72,12 +72,9 @@ export function ProjectCard({
         <p className="line-clamp-4 text-base leading-[1.3] text-black/65">
           {description}
         </p>
-        <button
-          type="button"
-          className={CARD_BUTTON_LIGHT}
-        >
+        <span className={CARD_BUTTON_LIGHT} aria-hidden="true">
           Discover more
-        </button>
+        </span>
       </div>
     </article>
   );

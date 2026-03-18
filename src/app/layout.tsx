@@ -19,8 +19,15 @@ const playfairDisplay = Playfair_Display({
 
 const SITE_NAME = "CALM & CRAZY | Jun Dong";
 const SITE_DESC = "UX designer focusing on e-commerce experience and conversion.";
-// 上线后改为你的真实域名，例如 https://yourname.com
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+
+function getSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  if (explicit) return explicit;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

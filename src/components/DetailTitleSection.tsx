@@ -46,22 +46,22 @@ export function DetailTitleSection() {
       {/* 吸顶栏：仅当主标题 section 完全滚出视口时显示 */}
       {showStickyBar && (
         <div
-          className="fixed top-0 right-0 left-[180px] z-10 bg-white/95 shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-[4px] sticky-bar-animated"
+          className="fixed right-0 z-10 bg-white/95 shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-[4px] sticky-bar-animated left-0 top-14 md:left-[180px] md:top-0"
           role="banner"
         >
           <div
-            className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-4 px-5 py-3 md:px-[60px] md:py-[24px]"
+            className="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-2 px-4 py-2.5 md:gap-4 md:px-[60px] md:py-[24px]"
             style={{ width: "100%" }}
           >
             <Link
               href="/"
-              className={`${CARD_BUTTON_LIGHT} inline-flex items-center gap-2 no-underline text-black`}
+              className="inline-flex max-w-full items-center text-xs font-medium text-neutral-500 no-underline transition-colors hover:text-red-600 sm:text-sm"
               aria-label="Back to homepage"
             >
-              <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
-              <span>Back to homepage</span>
+              <span className="truncate sm:hidden">Back</span>
+              <span className="truncate max-sm:hidden">Back to homepage</span>
             </Link>
-            <h1 className={`min-w-0 text-xl font-bold leading-tight text-black md:text-2xl`}>
+            <h1 className="min-w-0 w-full text-lg font-bold leading-snug text-black md:text-2xl">
               {title}
             </h1>
           </div>
@@ -71,15 +71,16 @@ export function DetailTitleSection() {
       {/* 主标题 section：无滚动时展示；随页面滚动可完全离开视口 */}
       <section
         ref={sectionRef}
-        className="flex flex-col bg-white px-5 pt-[60px] pb-[40px] md:px-[60px]"
+        className="flex flex-col bg-white px-4 pt-[60px] pb-[40px] md:px-[60px]"
       >
         <Link
           href="/"
-          className={`${CARD_BUTTON_LIGHT} mb-5 inline-flex items-center gap-2 no-underline text-black`}
+          className={`${CARD_BUTTON_LIGHT} mb-5 inline-flex items-center gap-1.5 no-underline text-black px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm`}
           aria-label="Back to homepage"
         >
-          <Icon name="arrow_back" size={20} className="shrink-0 text-black" aria-hidden />
-          <span>Back to homepage</span>
+          <Icon name="arrow_back" size={18} className="shrink-0 text-black" aria-hidden />
+          <span className="sm:hidden">Back</span>
+          <span className="max-sm:hidden">Back to homepage</span>
         </Link>
         <h1 className={`min-w-0 ${TEXT_SECTION_TITLE}`}>
           {title}

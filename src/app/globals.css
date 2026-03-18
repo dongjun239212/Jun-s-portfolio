@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* 区块水平留白：小屏紧凑、md+ 与侧栏节奏一致 */
+  --section-px: 1.5rem;
+  --section-px-md: 2.5rem;
+  --section-title-pt: 3.75rem;
+  --section-block-pb: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-px: var(--section-px-md);
+  }
 }
 
 @theme inline {
@@ -10,13 +21,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-tiktok-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-mono: ui-monospace, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -47,7 +51,7 @@ body {
 .detail-list li::marker {
   font-family: inherit;
   font-variant-numeric: tabular-nums;
-  color: rgba(0, 0, 0, 0.7);
+  color: color-mix(in oklab, var(--foreground) 68%, transparent);
 }
 
 /* 侧栏导航：悬停时图标强制红色，覆盖内联 color */
@@ -67,6 +71,12 @@ nextjs-portal {
 .hero-quote {
   word-break: keep-all;
   overflow-wrap: break-word;
+  /* slogan：控制行数，避免小屏版式失衡 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-wrap: balance;
 }
 
 /* Hero 区入场动画（背景轻微缩放，文字淡入） */
@@ -116,11 +126,63 @@ nextjs-portal {
   animation: sticky-bar-drop-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Mobile menu: overlay fade + panel slide + item stagger */
+@keyframes mobile-overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-panel-slide-in {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-nav-item-in {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mobile-overlay-animated {
+  animation: mobile-overlay-fade-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-panel-animated {
+  animation: mobile-panel-slide-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-nav-item-animated {
+  opacity: 0;
+  animation: mobile-nav-item-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* 动画可访问性：用户偏好减少动效时禁用大部分自定义动画 */
 @media (prefers-reduced-motion: reduce) {
   .hero-bg-animated,
   .hero-content-animated,
-  .sticky-bar-animated {
+  .sticky-bar-animated,
+  .mobile-overlay-animated,
+  .mobile-panel-animated,
+  .mobile-nav-item-animated {
     animation: none !important;
+  }
+
+  .mobile-nav-item-animated {
+    opacity: 1 !important;
   }
 }

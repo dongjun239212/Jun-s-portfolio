@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HomeMain } from "@/app/home/HomePage";
 import { DetailMain } from "@/components/DetailPageContent";
-import { SidebarNav } from "@/components/SidebarNav";
+import { PortfolioShell } from "@/components/PortfolioShell";
 import { getHomeScrollY, clearHomeScrollY } from "@/components/LinkToDetail";
 
 function getFromParam(): string | null {
@@ -59,31 +58,13 @@ export function ViewSwitcher() {
   }, [isDetail]);
 
   return (
-    <div className="flex min-h-screen bg-white text-black" id="top">
-      {/* 全局左侧导航壳，仅一份 */}
-      <aside className="sticky top-0 flex h-screen w-[180px] shrink-0 flex-col border-r border-black">
-        <div className="flex flex-col items-center justify-center border-b border-black px-4 py-8">
-          <Link
-            href="/#top"
-            className="flex w-full items-start justify-center px-4 py-2.5 no-underline text-inherit hover:opacity-80 transition-opacity"
-          >
-            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2] w-full">
-              CALM
-              <br />
-              &
-              <br />
-              CRAZY
-            </h1>
-          </Link>
-        </div>
-        <SidebarNav basePath={isDetail ? "/" : ""} activeSection={isDetail ? detailFromSection : null} />
-      </aside>
-
+    <PortfolioShell isDetail={isDetail} detailFromSection={detailFromSection}>
       <div className="min-w-0 flex-1">
         <div
           style={{ display: isDetail ? "none" : "block" }}
           className="min-h-screen"
           aria-hidden={isDetail}
+          inert={isDetail ? true : undefined}
         >
           <HomeMain />
         </div>
@@ -91,10 +72,11 @@ export function ViewSwitcher() {
           style={{ display: isDetail ? "block" : "none" }}
           className="min-h-screen"
           aria-hidden={!isDetail}
+          inert={!isDetail ? true : undefined}
         >
           <DetailMain detailFromSection={detailFromSection} />
         </div>
       </div>
-    </div>
+    </PortfolioShell>
   );
 }

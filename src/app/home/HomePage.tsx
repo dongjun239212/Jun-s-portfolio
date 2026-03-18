@@ -19,9 +19,10 @@ import keyProject2 from "@/assets/key-project-2.png";
 import keyProject3 from "@/assets/key-project-3.png";
 import keyProject4 from "@/assets/key-project-4.png";
 import { HeroBackground } from "@/components/HeroBackground";
+import { HeroQuote } from "@/components/HeroQuote";
 import { LinkToDetail } from "@/components/LinkToDetail";
+import { PortfolioShell } from "@/components/PortfolioShell";
 import { ProjectCard } from "@/components/ProjectCard";
-import { SidebarNav } from "@/components/SidebarNav";
 import { ThinkingCard } from "@/components/ThinkingCard";
 import { BODY_PRIMARY, TEXT_SECTION_TITLE, TEXT_STAT_LABEL, TEXT_STAT_NUMBER } from "@/lib/typography";
 
@@ -31,13 +32,48 @@ const PLACEHOLDER = {
   thinking: thinkingPlaceholder as { src: string },
 };
 
-const THINKING_CARDS: { title: string; imageSrcs: string[]; gradientFrom: string }[] = [
-  { title: "Store experience insights", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src], gradientFrom: "29.625%" },
-  { title: "Entry & conversion design", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src], gradientFrom: "29.625%" },
-  { title: "Merchant trust & grading", imageSrcs: [(thinkingImg4 as { src: string }).src], gradientFrom: "37.403%" },
-  { title: "Traffic and discovery", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src, (thinkingImg5 as { src: string }).src], gradientFrom: "29.625%" },
-  { title: "Landing page optimization", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src, (thinkingImg6 as { src: string }).src], gradientFrom: "29.625%" },
-  { title: "Inventory management system upgrade", imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg6 as { src: string }).src, (thinkingImg7 as { src: string }).src], gradientFrom: "29.625%" },
+const THINKING_CARDS: {
+  title: string;
+  imageSrcs: string[];
+  gradientFrom: string;
+  blurb: string;
+}[] = [
+  {
+    title: "Store experience insights",
+    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src],
+    gradientFrom: "29.625%",
+    blurb: "Synthesizing behavioral data and qualitative research to refine browse-to-buy flows and shelf-level clarity.",
+  },
+  {
+    title: "Entry & conversion design",
+    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src],
+    gradientFrom: "29.625%",
+    blurb: "Reducing friction from first touch to intent—landing structure, CTAs, and progressive disclosure tuned for conversion.",
+  },
+  {
+    title: "Merchant trust & grading",
+    imageSrcs: [(thinkingImg4 as { src: string }).src],
+    gradientFrom: "37.403%",
+    blurb: "Signals and transparency that help buyers trust sellers while keeping grading fair and actionable for operators.",
+  },
+  {
+    title: "Traffic and discovery",
+    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src, (thinkingImg5 as { src: string }).src],
+    gradientFrom: "29.625%",
+    blurb: "Connecting discovery surfaces with store identity so the right shops surface without noisy or duplicate exposure.",
+  },
+  {
+    title: "Landing page optimization",
+    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src, (thinkingImg6 as { src: string }).src],
+    gradientFrom: "29.625%",
+    blurb: "Iterating hero, proof, and hierarchy so campaign landings match user intent and measurable funnel outcomes.",
+  },
+  {
+    title: "Inventory management system upgrade",
+    imageSrcs: [(thinkingImg1 as { src: string }).src, (thinkingImg6 as { src: string }).src, (thinkingImg7 as { src: string }).src],
+    gradientFrom: "29.625%",
+    blurb: "Operational dashboards and alerts that scale with catalog complexity—accuracy first, then speed for merchants.",
+  },
 ];
 
 export function HomeMain() {
@@ -52,24 +88,22 @@ export function HomeMain() {
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <div className="relative z-10 flex w-full flex-col items-center gap-4 text-center text-white px-4 hero-content-animated">
-            <p className="hero-quote w-full text-sm font-bold leading-snug sm:text-base md:text-2xl lg:text-5xl xl:text-[64px]">
-              Weakness and ignorance are not the barriers to survival, but arrogance is.
-            </p>
-            <p className="text-sm font-medium leading-snug text-white/80 sm:text-base md:text-lg lg:text-xl">
-              UX designer focusing on store frameworks, shopping experience, and conversion for e-commerce products.
-            </p>
+          <div className="relative z-10 mx-auto flex w-full flex-col items-center gap-2 px-4 text-center text-white hero-content-animated">
+            <HeroQuote
+              text="Weakness and ignorance are not the barriers to survival, but arrogance is."
+              className="hero-quote w-full font-bold leading-snug text-[clamp(20px,3.6vw,64px)]"
+            />
           </div>
         </section>
 
         {/* KEY PROJECTS */}
         <section id="projects" className="border-b border-black">
-          <div className="flex items-center justify-start px-10 pb-10 pt-[60px]">
+          <div className="flex items-center justify-start px-[var(--section-px)] pb-[var(--section-block-pb)] pt-[var(--section-title-pt)]">
             <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               KEY PROJECTS
             </h2>
           </div>
-          <div className="flex flex-col gap-10 px-10 pb-10 pt-5">
+          <div className="flex flex-col gap-10 px-[var(--section-px)] pb-[var(--section-block-pb)] pt-5">
             <div className="grid gap-10 md:grid-cols-2">
               <LinkToDetail href="/detail?title=Shop%20framework%20revamp&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
                 <ProjectCard
@@ -91,14 +125,14 @@ export function HomeMain() {
                 <ProjectCard
                   imageSrc={(keyProject3 as { src: string }).src}
                   title="Shop tiering system"
-                  description="With the increasing complexity of stock management, implementing an upgraded inventory solution is critical. This new system will enhance tracking accuracy, automate replenishment processes, and provide real-time analytics. Ultimately, it will empower merchants to maintain optimal stock levels and reduce overhead costs."
+                  description="A tiered shop model maps merchant maturity to differentiated tools, exposure, and trust signals—so platform investment aligns with growth stage and sellers always know what to aim for next."
                 />
               </LinkToDetail>
               <LinkToDetail href="/detail?title=Campaign%20for%20shop&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
                 <ProjectCard
                   imageSrc={(keyProject4 as { src: string }).src}
                   title="Campaign for shop"
-                  description="With the increasing complexity of stock management, implementing an upgraded inventory solution is critical. This new system will enhance tracking accuracy, automate replenishment processes, and provide real-time analytics. Ultimately, it will empower merchants to maintain optimal stock levels and reduce overhead costs."
+                  description="End-to-end design for shop-facing campaigns: enrollment, assets, and in-store surfacing—balancing low friction for merchants with clear lift in traffic, participation, and conversion."
                 />
               </LinkToDetail>
             </div>
@@ -107,15 +141,20 @@ export function HomeMain() {
 
         {/* DESIGN THINKING */}
         <section id="thinking" className="border-b border-black">
-          <div className="flex items-center justify-start px-10 pt-16 pb-10">
+          <div className="flex items-center justify-start px-[var(--section-px)] pb-[var(--section-block-pb)] pt-16">
             <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               DESIGN THINKING
             </h2>
           </div>
-          <div className="grid gap-10 px-10 pb-16 pt-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-10 px-[var(--section-px)] pb-16 pt-5 md:grid-cols-2 lg:grid-cols-3">
             {THINKING_CARDS.map((card, key) => (
               <LinkToDetail key={key} href={`/detail?title=${encodeURIComponent(card.title)}&from=thinking`} className="block no-underline text-inherit">
-                <ThinkingCard title={card.title} imageSrcs={card.imageSrcs} gradientFrom={card.gradientFrom} />
+                <ThinkingCard
+                  title={card.title}
+                  imageSrcs={card.imageSrcs}
+                  gradientFrom={card.gradientFrom}
+                  blurb={card.blurb}
+                />
               </LinkToDetail>
             ))}
           </div>
@@ -123,13 +162,12 @@ export function HomeMain() {
 
         {/* ABOUT ME */}
         <section id="about" className="border-b border-black">
-          <div className="flex items-center justify-start px-10 pb-10 pt-[60px]">
+          <div className="flex items-center justify-start px-[var(--section-px)] pb-[var(--section-block-pb)] pt-[var(--section-title-pt)]">
             <h2 className={`${TEXT_SECTION_TITLE} text-left`}>
               ABOUT ME
             </h2>
           </div>
-          {/* 小屏更紧凑；大屏回到“铺满”感的留白和宽度 */}
-          <div className="flex flex-col px-6 pb-[40px] pt-5 md:px-8 md:pb-[48px] lg:px-10 lg:pb-[60px]">
+          <div className="flex flex-col px-[var(--section-px)] pb-10 pt-5 md:pb-12 lg:pb-[60px]">
             <div className="bg-[#f5f5f5] p-4 md:p-6 lg:p-10 xl:p-[60px]">
               <div className="flex w-full flex-col gap-10 md:gap-12 lg:gap-[48px] xl:gap-[60px] lg:max-w-none">
                 {/* 简介 + 数据：Figma 同一块，仅一条底边 */}
@@ -200,7 +238,7 @@ export function HomeMain() {
                     <span className="break-all">+86 150 7169 7874</span>
                   </span>
                   <span className="whitespace-normal break-all">
-                    <span className="text-black/50">eMail</span>{" "}
+                    <span className="text-black/50">Email</span>{" "}
                     <span className="break-all">dongjun239212@gmail.com</span>
                   </span>
                 </div>
@@ -210,7 +248,7 @@ export function HomeMain() {
         </section>
 
         {/* Footer */}
-        <footer className="flex items-center justify-center px-10 py-16">
+        <footer className="flex items-center justify-center px-[var(--section-px)] py-16">
           <p className="font-playfair text-center text-2xl font-bold italic leading-[1.2]">
             I don&apos;t need a Thought Stamp—I am the master of my own convictions.
           </p>
@@ -221,28 +259,9 @@ export function HomeMain() {
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen bg-white text-black" id="top">
-      {/* 左侧导航 - 220px 固定 */}
-      <aside className="sticky top-0 flex h-screen w-[180px] shrink-0 flex-col border-r border-black">
-        <div className="flex flex-col border-b border-black py-10">
-          <a
-            href="#top"
-            className="flex w-full items-center justify-start px-4 py-2.5 cursor-pointer no-underline text-inherit hover:opacity-80 transition-opacity"
-          >
-            <h1 className="whitespace-pre-wrap text-2xl font-bold leading-[1.2]">
-              CALM
-              <br />
-              &
-              <br />
-              CRAZY
-            </h1>
-          </a>
-        </div>
-        <SidebarNav />
-      </aside>
-
+    <PortfolioShell isDetail={false} detailFromSection={null}>
       <HomeMain />
-    </div>
+    </PortfolioShell>
   );
 }
 
@@ -266,43 +285,6 @@ function StatBlock({
       <p className={`max-w-[34ch] ${BODY_PRIMARY}`}>
         {detail}
       </p>
-    </div>
-  );
-}
-
-function TimelineItem({
-  dateFrom,
-  dateTo,
-  company,
-  role,
-  description,
-}: {
-  dateFrom: string;
-  dateTo: string;
-  company: string;
-  role: string;
-  description: string;
-}) {
-  return (
-    <div className="flex gap-10 md:gap-16">
-      <div className="flex shrink-0 flex-col gap-1.5">
-        <p className="text-2xl font-semibold leading-[1.2] text-black/48">
-          {dateFrom}
-        </p>
-        <div className="h-2 w-2 shrink-0 rounded-full bg-black/20" />
-        <p className="text-2xl font-semibold leading-[1.2] text-black/48">
-          {dateTo}
-        </p>
-      </div>
-      <div className="flex flex-1 flex-col gap-4 md:gap-6">
-        <div className="flex flex-wrap gap-2 text-2xl md:gap-4">
-          <span className="font-bold">{company}</span>
-          <span className="font-semibold text-black/80">{role}</span>
-        </div>
-        <p className="text-base font-medium leading-[1.5] text-black/48">
-          {description}
-        </p>
-      </div>
     </div>
   );
 }

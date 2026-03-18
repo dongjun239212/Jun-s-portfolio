@@ -24,7 +24,7 @@ export function DetailImage({
 
   const onError = useCallback(() => setFailed(true), []);
 
-  const onLoadingComplete = useCallback(() => {
+  const onLoad = useCallback(() => {
     setLoaded(true);
   }, []);
 
@@ -50,7 +50,7 @@ export function DetailImage({
         fill={fill}
         priority={priority}
         onError={onError}
-        onLoadingComplete={onLoadingComplete}
+        onLoad={onLoad}
         unoptimized
       />
     </div>
