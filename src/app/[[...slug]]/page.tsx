@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ViewSwitcher } from "@/components/ViewSwitcher";
+import { ViewSwitcher } from "@/components/layout";
 
 /** 静态导出时需声明要生成的路径 */
 export function generateStaticParams() {

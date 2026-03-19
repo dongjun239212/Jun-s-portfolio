@@ -15,7 +15,9 @@ export type ThinkingTopic = {
   };
 };
 
-import thinkingImg1 from "@/assets/thinking/thinking-7f12ea1300756f144a0fb5daaf68dbfc01103a46.png";
+// thinking 图片：构建时必须能解析到真实文件。
+// 你只删掉了其中一张（thinking-7f12...png），其余图片仍可用；
+// 因此这里跳过缺失那张，保留剩余 6 张并把它们按原分组顺序填回 topics。
 import thinkingImg2 from "@/assets/thinking/thinking-2a85d4c6629fe190763e2c6aba62ff22e65fcbf1.png";
 import thinkingImg3 from "@/assets/thinking/thinking-c2c8871fb352004eedca2b15978708e9f32e4026.png";
 import thinkingImg4 from "@/assets/thinking/thinking-6df743fc239d2db76126f65cd074f9618d56f5cd.png";
@@ -24,24 +26,18 @@ import thinkingImg6 from "@/assets/thinking/thinking-a3129a53e4026333677575944aa
 import thinkingImg7 from "@/assets/thinking/thinking-95e962aad3f70bfa82a22777cdf7e78f783e53e0.png";
 
 const THINKING_IMAGE_SETS: string[][] = [
-  [(thinkingImg1 as { src: string }).src, (thinkingImg2 as { src: string }).src],
-  [(thinkingImg1 as { src: string }).src, (thinkingImg3 as { src: string }).src],
+  // 原：[img1, img2]，现在缺 img1 => [img2]
+  [(thinkingImg2 as { src: string }).src],
+  // 原：[img1, img3] => [img3]
+  [(thinkingImg3 as { src: string }).src],
+  // 原：[img4]
   [(thinkingImg4 as { src: string }).src],
-  [
-    (thinkingImg1 as { src: string }).src,
-    (thinkingImg2 as { src: string }).src,
-    (thinkingImg5 as { src: string }).src,
-  ],
-  [
-    (thinkingImg1 as { src: string }).src,
-    (thinkingImg3 as { src: string }).src,
-    (thinkingImg6 as { src: string }).src,
-  ],
-  [
-    (thinkingImg1 as { src: string }).src,
-    (thinkingImg6 as { src: string }).src,
-    (thinkingImg7 as { src: string }).src,
-  ],
+  // 原：[img1, img2, img5] => [img2, img5]
+  [(thinkingImg2 as { src: string }).src, (thinkingImg5 as { src: string }).src],
+  // 原：[img1, img3, img6] => [img3, img6]
+  [(thinkingImg3 as { src: string }).src, (thinkingImg6 as { src: string }).src],
+  // 原：[img1, img6, img7] => [img6, img7]
+  [(thinkingImg6 as { src: string }).src, (thinkingImg7 as { src: string }).src],
 ];
 
 function countWords(sections: { paragraphs: string[] }[]) {

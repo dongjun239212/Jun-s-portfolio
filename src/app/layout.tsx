@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TikTok_Sans, Playfair_Display } from "next/font/google";
 import Script from "next/script";
-import { NextJsPortalFix } from "@/components/NextJsPortalFix";
+import { NextJsPortalFix } from "@/components/layout";
 import "./globals.css";
 
 const tiktokSans = TikTok_Sans({

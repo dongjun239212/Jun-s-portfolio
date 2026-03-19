@@ -3,9 +3,9 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 import { HomeMain } from "@/app/home/HomePage";
-import { DetailMain } from "@/components/DetailPageContent";
-import { PortfolioShell } from "@/components/PortfolioShell";
-import { getHomeScrollY, clearHomeScrollY } from "@/components/LinkToDetail";
+import { DetailMain } from "@/components/detail";
+import { PortfolioShell } from "@/components/layout";
+import { clearHomeScrollY, getHomeScrollY } from "@/components/home";
 
 /**
  * 首页与详情页双视图常驻 DOM，仅通过 display 切换显示。

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CARD_BUTTON_LIGHT } from "@/lib/cardButtonStyles";
 import { TEXT_SECTION_TITLE } from "@/lib/typography";
-import { Icon } from "@/components/Icons";
+import { Icon } from "@/components/layout";
 import { THINKING_TOPICS } from "@/lib/thinkingTopics";
 
 const DEFAULT_TITLE = "Shop framework revamp";

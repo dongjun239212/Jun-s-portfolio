@@ -4,11 +4,8 @@
 
 import Link from "next/link";
 import { Suspense } from "react";
-import { DetailImage } from "@/components/DetailImage";
-import { DetailTitleSection } from "@/components/DetailTitleSection";
-import { ThinkingDetailContent } from "@/components/ThinkingDetailContent";
-import { ThinkingDetailHero } from "@/components/ThinkingDetailHero";
-import { SidebarNav } from "@/components/SidebarNav";
+import { DetailImage, DetailTitleSection, ThinkingDetailContent, ThinkingDetailHero } from "@/components/detail";
+import { SidebarNav } from "@/components/layout";
 import detailHero from "@/assets/detail/detail-hero.png";
 import detailUserResearch from "@/assets/detail/detail-user-research.png";
 import detailData1 from "@/assets/detail/detail-data-1.png";
@@ -37,8 +34,20 @@ export function DetailMain({ detailFromSection = null }: DetailPageContentProps)
         {isThinkingDetail ? (
           <ThinkingDetailHero />
         ) : (
-          <section className="relative w-full shrink-0 overflow-hidden" style={{ aspectRatio: "6 / 1" }} aria-hidden>
+          <section
+            className="relative w-full shrink-0 overflow-hidden bg-[var(--surface-muted)] aspect-[6/1] max-md:aspect-[4/3]"
+            aria-hidden
+          >
             <DetailImage src={detailHero} alt="" className="object-cover object-center size-full" fill priority />
+            <div className="absolute inset-0 bg-black/20" aria-hidden />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.12) 55%, rgba(255,255,255,0.00) 100%)",
+              }}
+              aria-hidden
+            />
           </section>
         )}
         <div className="flex w-full max-w-[1680px] flex-1 flex-col mx-auto pb-[120px]">
@@ -58,128 +67,142 @@ export function DetailMain({ detailFromSection = null }: DetailPageContentProps)
             <ThinkingDetailContent />
           ) : (
             <>
-              <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
-                <h2 className={TEXT_SECTION_TITLE}>Background</h2>
-                <p className={BODY_PRIMARY}>
-                  Based on the extensive growth in the past two years through various measures to expand
-                  traffic and entry points and to complete basic functions, the overall data target of
-                  surpassing Douyin&apos;s share has been achieved (TTS store GMV accounts for 10.5% of
-                  the overall market, while Douyin store GMV accounts for about 7% of the overall
-                  market). In order to make the store&apos;s private domain mentality more in line with
-                  local user habits, further leverage the attractiveness of stores, especially strategic
-                  key merchants, to new customers and the stickiness to old customers&apos; repeat
-                  purchases through refined experience design, systematic Data Analysis and thinking have
-                  been conducted on the internal and external links of the store to seek some new growth
-                  opportunities.
-                </p>
-              </section>
-              <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
-                <h2 className={TEXT_SECTION_TITLE}>Goals</h2>
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-3">
-                    <h3 className={TEXT_SUBTITLE}>Business goals</h3>
+              <section className="flex flex-col gap-4 px-5 py-[16px] md:px-[60px]">
+                <div className="mx-auto w-full max-w-[1440px]">
+                  <div className="mx-auto max-w-[96ch] flex flex-col gap-3">
+                    <h2 className={TEXT_SECTION_TITLE}>Background</h2>
                     <p className={BODY_PRIMARY}>
-                      Through the end-to-end experience upgrade of the store, strengthening entry
-                      perception and improving service efficiency, we can achieve precise matching between
-                      traffic intent and service scenarios, ultimately driving long-term and large-scale
-                      growth of GMV for key merchants.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <h3 className={TEXT_SUBTITLE}>Design goals</h3>
-                    <p className={BODY_PRIMARY}>
-                      Through experience optimization from the store entrance to the store&apos;s service
-                      delivery and exploration of design opportunity points, we help upgrade the
-                      store&apos;s business model, ultimately achieving the win-win goal of business GMV
-                      growth and user experience optimization.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <h3 className={TEXT_SUBTITLE}>Success metrics</h3>
-                    <p className={BODY_PRIMARY}>
-                      Store GMV +X%, Store CO & IPO +X%, store NPSr (brand perception/aesthetics) +X%.
+                      Based on the extensive growth in the past two years through various measures to expand
+                      traffic and entry points and to complete basic functions, the overall data target of
+                      surpassing Douyin&apos;s share has been achieved (TTS store GMV accounts for 10.5% of
+                      the overall market, while Douyin store GMV accounts for about 7% of the overall
+                      market). In order to make the store&apos;s private domain mentality more in line with
+                      local user habits, further leverage the attractiveness of stores, especially strategic
+                      key merchants, to new customers and the stickiness to old customers&apos; repeat
+                      purchases through refined experience design, systematic Data Analysis and thinking have
+                      been conducted on the internal and external links of the store to seek some new growth
+                      opportunities.
                     </p>
                   </div>
                 </div>
               </section>
-          <section className="flex flex-col gap-10 px-5 py-10 md:px-[60px] text-left">
-            <div className="flex flex-col items-start gap-6">
-              <h2 className={TEXT_SECTION_TITLE}>Design analysis</h2>
-              <p className={BODY_PRIMARY}>
-                We conduct systematic analysis and summary from three dimensions: User Research
-                reports, User Data Analysis, and analysis of non-China DTC competing products. While
-                extracting core highlights, we also sort out and form theoretical research basis to
-                support the subsequent iteration of the product.
-              </p>
-            </div>
-            <div className="flex flex-col items-start gap-10">
-              <div className="flex w-full flex-col items-start gap-6">
-                <h3 className={TEXT_SUBTITLE}>User research perspective</h3>
-                <div className="flex w-full flex-col items-start gap-3 text-left">
-                  <p className={TEXT_LABEL}>Insights</p>
-                  <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
-                    <li>The FYP scenario remains one of the most valuable channels for attracting customers into stores, and how to enhance store perception in content scenarios is worth exploring.</li>
-                    <li>The store grading logic should be as clear and simple as possible, and should not blindly copy the Chinese grading system.</li>
-                    <li>The brand/basic perception and structure of the store should be as closely aligned with the DTC website as possible to reduce users&apos; understanding costs.</li>
-                  </ol>
-                </div>
-                <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
-                  <DetailImage src={detailUserResearch} alt="" className="object-cover object-center" fill />
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-6">
-                <h3 className={TEXT_SUBTITLE}>Data performance perspective</h3>
-                <div className="flex w-full flex-col items-start gap-6">
-                  <div className="flex w-full flex-col items-start gap-3 text-left">
-                    <p className={TEXT_LABEL}>Insights- entrance</p>
-                    <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
-                      <li>The store entrance with high conversion and high exposure should provide more refined trust information and value points to attract users to enter the store.</li>
-                      <li>Post-purchase scenarios should provide more follow-up mental information, such as adding store updates to frequently shopped stores in the order list.</li>
-                      <li>The content and recommendation fields have high conversion efficiency, can expand more store entry forms, and increase in-store traffic.</li>
-                    </ol>
-                  </div>
-                  <div className="flex w-full flex-col items-start gap-3 text-left">
-                    <p className={TEXT_LABEL}>Insights- landing page</p>
-                    <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/70">
-                      <li>Strengthen in-store product search capabilities, increase the weight of in-store search and classification entry points, streamline classification levels, and enable stores with a large number of products to be &quot;more enjoyable to browse and quicker to find products&quot;.</li>
-                      <li>The distinction between branded and non-branded stores has increased, and users place different emphases on trust in branded and non-branded stores. Therefore, greater differentiation should be made in information presentation.</li>
-                      <li>Strengthen the penetration of marketing promotion information. The default decoration components should include marketing components such as flash sales, BMSM, etc.</li>
-                      <li>Provide returning customers with a shorter path back to the store, offer quick follow-up entry points and associated recommendations based on historical behavior.</li>
-                    </ol>
+              <section className="flex flex-col gap-4 px-5 py-[16px] md:px-[60px]">
+                <div className="mx-auto w-full max-w-[1440px]">
+                  <div className="mx-auto max-w-[96ch] flex flex-col gap-4">
+                    <h2 className={TEXT_SECTION_TITLE}>Goals</h2>
+                    <div className="flex flex-col gap-6">
+                      <div className="flex flex-col gap-3">
+                        <h3 className={TEXT_SUBTITLE}>Business goals</h3>
+                        <p className={BODY_PRIMARY}>
+                          Through the end-to-end experience upgrade of the store, strengthening entry
+                          perception and improving service efficiency, we can achieve precise matching between
+                          traffic intent and service scenarios, ultimately driving long-term and large-scale
+                          growth of GMV for key merchants.
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-3">
+                        <h3 className={TEXT_SUBTITLE}>Design goals</h3>
+                        <p className={BODY_PRIMARY}>
+                          Through experience optimization from the store entrance to the store&apos;s service
+                          delivery and exploration of design opportunity points, we help upgrade the
+                          store&apos;s business model, ultimately achieving the win-win goal of business GMV
+                          growth and user experience optimization.
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-3">
+                        <h3 className={TEXT_SUBTITLE}>Success metrics</h3>
+                        <p className={BODY_PRIMARY}>
+                          Store GMV +X%, Store CO & IPO +X%, store NPSr (brand perception/aesthetics) +X%.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex w-full gap-5">
-                  <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <DetailImage src={detailData1} alt="" className="object-cover object-center" fill />
-                  </div>
-                  <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <DetailImage src={detailData2} alt="" className="object-cover object-center" fill />
+              </section>
+              <section className="flex flex-col gap-10 px-5 py-[16px] md:px-[60px] text-left">
+                <div className="mx-auto w-full max-w-[1440px]">
+                  <div className="mx-auto max-w-[96ch] flex flex-col gap-10">
+                    <div className="flex flex-col items-start gap-6">
+                      <h2 className={TEXT_SECTION_TITLE}>Design analysis</h2>
+                      <p className={BODY_PRIMARY}>
+                        We conduct systematic analysis and summary from three dimensions: User Research
+                        reports, User Data Analysis, and analysis of non-China DTC competing products. While
+                        extracting core highlights, we also sort out and form theoretical research basis to
+                        support the subsequent iteration of the product.
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-start gap-10">
+                      <div className="flex w-full flex-col items-start gap-6">
+                        <h3 className={TEXT_SUBTITLE}>User research perspective</h3>
+                        <div className="flex w-full flex-col items-start gap-3 text-left">
+                          <p className={TEXT_LABEL}>Insights</p>
+                          <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
+                            <li>The FYP scenario remains one of the most valuable channels for attracting customers into stores, and how to enhance store perception in content scenarios is worth exploring.</li>
+                            <li>The store grading logic should be as clear and simple as possible, and should not blindly copy the Chinese grading system.</li>
+                            <li>The brand/basic perception and structure of the store should be as closely aligned with the DTC website as possible to reduce users&apos; understanding costs.</li>
+                          </ol>
+                        </div>
+                        <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
+                          <DetailImage src={detailUserResearch} alt="" className="object-cover object-center" fill />
+                        </div>
+                      </div>
+                      <div className="flex w-full flex-col items-start gap-6">
+                        <h3 className={TEXT_SUBTITLE}>Data performance perspective</h3>
+                        <div className="flex w-full flex-col items-start gap-6">
+                          <div className="flex w-full flex-col items-start gap-3 text-left">
+                            <p className={TEXT_LABEL}>Insights- entrance</p>
+                            <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
+                              <li>The store entrance with high conversion and high exposure should provide more refined trust information and value points to attract users to enter the store.</li>
+                              <li>Post-purchase scenarios should provide more follow-up mental information, such as adding store updates to frequently shopped stores in the order list.</li>
+                              <li>The content and recommendation fields have high conversion efficiency, can expand more store entry forms, and increase in-store traffic.</li>
+                            </ol>
+                          </div>
+                          <div className="flex w-full flex-col items-start gap-3 text-left">
+                            <p className={TEXT_LABEL}>Insights- landing page</p>
+                            <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/70">
+                              <li>Strengthen in-store product search capabilities, increase the weight of in-store search and classification entry points, streamline classification levels, and enable stores with a large number of products to be &quot;more enjoyable to browse and quicker to find products&quot;.</li>
+                              <li>The distinction between branded and non-branded stores has increased, and users place different emphases on trust in branded and non-branded stores. Therefore, greater differentiation should be made in information presentation.</li>
+                              <li>Strengthen the penetration of marketing promotion information. The default decoration components should include marketing components such as flash sales, BMSM, etc.</li>
+                              <li>Provide returning customers with a shorter path back to the store, offer quick follow-up entry points and associated recommendations based on historical behavior.</li>
+                            </ol>
+                          </div>
+                        </div>
+                        <div className="flex w-full gap-5">
+                          <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                            <DetailImage src={detailData1} alt="" className="object-cover object-center" fill />
+                          </div>
+                          <div className="relative min-h-[200px] min-w-0 flex-1 shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                            <DetailImage src={detailData2} alt="" className="object-cover object-center" fill />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex w-full flex-col items-start gap-6">
+                        <h3 className={TEXT_SUBTITLE}>Competitor perspective</h3>
+                        <div className="flex w-full flex-col items-start gap-3 text-left">
+                          <p className={TEXT_LABEL}>Insights- entrance</p>
+                          <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
+                            <li>As a platform-based product, TTS can refer more to the framework of platform-based products in terms of large-scale structure and functional division.</li>
+                            <li>The display of trust-related information is particularly important. Brand stores need to showcase not only products but also brand propositions, stories, and styles.</li>
+                            <li>For stores with renovation capabilities, TTS&apos;s renovation needs to break away from the existing templates and provide more flexible and configurable renovation structures.</li>
+                            <li>For users at different stages and with different intentions when entering the store, more accurate and refined service capabilities need to be provided.</li>
+                          </ol>
+                        </div>
+                        <div className="flex w-full flex-col gap-6">
+                          <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                            <DetailImage src={detailCompetitor1} alt="" className="object-cover object-center" fill />
+                          </div>
+                          <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
+                            <DetailImage src={detailCompetitor2} alt="" className="object-cover object-center" fill />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex w-full flex-col items-start gap-6">
-                <h3 className={TEXT_SUBTITLE}>Competitor perspective</h3>
-                <div className="flex w-full flex-col items-start gap-3 text-left">
-                  <p className={TEXT_LABEL}>Insights- entrance</p>
-                  <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
-                    <li>As a platform-based product, TTS can refer more to the framework of platform-based products in terms of large-scale structure and functional division.</li>
-                    <li>The display of trust-related information is particularly important. Brand stores need to showcase not only products but also brand propositions, stories, and styles.</li>
-                    <li>For stores with renovation capabilities, TTS&apos;s renovation needs to break away from the existing templates and provide more flexible and configurable renovation structures.</li>
-                    <li>For users at different stages and with different intentions when entering the store, more accurate and refined service capabilities need to be provided.</li>
-                  </ol>
-                </div>
-                <div className="flex w-full flex-col gap-6">
-                  <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <DetailImage src={detailCompetitor1} alt="" className="object-cover object-center" fill />
-                  </div>
-                  <div className="relative min-h-[200px] w-full shrink-0 overflow-hidden" style={{ aspectRatio: "540/300" }} aria-hidden>
-                    <DetailImage src={detailCompetitor2} alt="" className="object-cover object-center" fill />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="flex flex-col gap-10 px-5 py-10 md:px-[60px]">
+              </section>
+          <section className="flex flex-col gap-10 px-5 py-[16px] md:px-[60px]">
+            <div className="mx-auto w-full max-w-[1440px]">
+              <div className="mx-auto max-w-[96ch] flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <h2 className={TEXT_SECTION_TITLE}>Design Strategies</h2>
               <p className={BODY_PRIMARY}>
@@ -234,9 +257,13 @@ export function DetailMain({ detailFromSection = null }: DetailPageContentProps)
                 </div>
               </div>
             </div>
+              </div>
+            </div>
           </section>
-          <section className="flex flex-col gap-10 px-5 py-10 md:px-[60px]">
-            <h2 className={TEXT_SECTION_TITLE}>Design proposal</h2>
+          <section className="flex flex-col gap-10 px-5 py-[16px] md:px-[60px]">
+            <div className="mx-auto w-full max-w-[1440px]">
+              <div className="mx-auto max-w-[96ch] flex flex-col gap-6">
+                <h2 className={TEXT_SECTION_TITLE}>Design proposal</h2>
             <div className="relative w-full overflow-hidden rounded-none" style={{ aspectRatio: "540/300" }} aria-hidden>
               <DetailImage src={detailProposalMain} alt="" className="object-cover object-center" fill />
             </div>
@@ -321,8 +348,12 @@ export function DetailMain({ detailFromSection = null }: DetailPageContentProps)
                 </div>
               </div>
             </div>
+              </div>
+            </div>
           </section>
-          <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
+          <section className="flex flex-col gap-4 px-5 py-[16px] md:px-[60px]">
+            <div className="mx-auto w-full max-w-[1440px]">
+              <div className="mx-auto max-w-[96ch] flex flex-col gap-4">
             <h2 className={TEXT_SECTION_TITLE}>Implement rhythm</h2>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-3">
@@ -338,14 +369,20 @@ export function DetailMain({ detailFromSection = null }: DetailPageContentProps)
                 <p className={BODY_PRIMARY}>Store GMV +X%, Store CO & IPO +X%, store NPSr (brand perception/aesthetics) +X%.</p>
               </div>
             </div>
+              </div>
+            </div>
           </section>
-          <section className="flex flex-col gap-6 px-5 py-10 md:px-[60px]">
+          <section className="flex flex-col gap-4 px-5 py-[16px] md:px-[60px]">
+            <div className="mx-auto w-full max-w-[1440px]">
+              <div className="mx-auto max-w-[96ch] flex flex-col gap-4">
             <h2 className={TEXT_SECTION_TITLE}>Appendix</h2>
             <ol className="detail-list list-decimal space-y-3 text-left text-base leading-relaxed text-black/80">
               <li>design link</li>
               <li>design link</li>
               <li>design link</li>
             </ol>
+              </div>
+            </div>
           </section>
             </>
           )}

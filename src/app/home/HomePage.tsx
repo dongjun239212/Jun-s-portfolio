@@ -5,25 +5,17 @@
 
 const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
 const heroImg = { src: `${BASE_PATH}/hero-watercolor.png` } as const;
-import projectPlaceholder from "@/assets/placeholder-project.jpg";
-import thinkingPlaceholder from "@/assets/placeholder-thinking.jpg";
 import keyProject1 from "@/assets/key-project-1.png";
 import keyProject2 from "@/assets/key-project-2.png";
 import keyProject3 from "@/assets/key-project-3.png";
 import keyProject4 from "@/assets/key-project-4.png";
-import { HeroBackground } from "@/components/HeroBackground";
-import { HeroQuote } from "@/components/HeroQuote";
-import { LinkToDetail } from "@/components/LinkToDetail";
-import { PortfolioShell } from "@/components/PortfolioShell";
-import { ProjectCard } from "@/components/ProjectCard";
-import { ThinkingCard } from "@/components/ThinkingCard";
+import { HeroBackground, HeroQuote, LinkToDetail, ProjectCard, ThinkingCard } from "@/components/home";
+import { PortfolioShell } from "@/components/layout";
 import { BODY_PRIMARY, TEXT_SECTION_TITLE, TEXT_STAT_LABEL, TEXT_STAT_NUMBER } from "@/lib/typography";
 import { THINKING_TOPICS } from "@/lib/thinkingTopics";
 
 const PLACEHOLDER = {
   hero: heroImg as { src: string },
-  project: projectPlaceholder as { src: string },
-  thinking: thinkingPlaceholder as { src: string },
 };
 
 const THINKING_CARDS = THINKING_TOPICS.map((t, idx) => ({
@@ -39,7 +31,7 @@ export function HomeMain() {
     <main className="min-w-0 flex-1">
         {/* Hero：默认宽高比 2:1；小屏改为 1:1（更贴合手机竖屏展示） */}
         <section
-          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-6 aspect-[2/1] max-md:aspect-[1/1]"
+          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-[20px] aspect-[2/1] max-md:aspect-[1/1]"
         >
           <div className="absolute inset-0 pointer-events-none hero-bg-animated" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />

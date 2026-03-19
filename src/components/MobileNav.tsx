@@ -7,7 +7,7 @@ import {
   MOBILE_PANEL_NAV_LINK_ACTIVE,
   MOBILE_PANEL_NAV_LINK_DEFAULT,
 } from "@/lib/sidebarNavStyles";
-import { Icon } from "@/components/Icons";
+import { Icon } from "@/components/layout";
 
 type Props = {
   isDetail: boolean;

@@ -20,7 +20,7 @@ export const TEXT_LABEL =
 
 /** 正文主段落（默认阅读色） */
 export const BODY_PRIMARY =
-  "text-base leading-relaxed text-black/80";
+  "text-base leading-relaxed text-black/80 break-words";
 
 /** 次要说明 / 图注等较弱层级 */
 export const BODY_SECONDARY =

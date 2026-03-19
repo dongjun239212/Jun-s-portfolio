@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { NAV_LINKS, SECTION_IDS } from "@/lib/navLinks";
 import { SIDEBAR_NAV_LINK_ACTIVE, SIDEBAR_NAV_LINK_DEFAULT } from "@/lib/sidebarNavStyles";
-import { Icon } from "@/components/Icons";
+import { Icon } from "@/components/layout";
 
 type SidebarNavProps = { basePath?: string; activeSection?: string | null };
 

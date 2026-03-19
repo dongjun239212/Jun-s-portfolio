@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SidebarNav } from "@/components/SidebarNav";
-import { MobileNav } from "@/components/MobileNav";
+import { MobileNav, SidebarNav } from "@/components/layout";
 
 type Props = {
   isDetail: boolean;
