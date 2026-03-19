@@ -20,7 +20,9 @@ type Props = {
 export function MobileNav({ isDetail, detailFromSection }: Props) {
   const [open, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
-  const openEffective = isDetail ? false : open;
+  // 详情页也允许打开移动端菜单。
+  // 原先在 detail 下强制禁用，会导致按钮点击后没有任何 UI 变化，看起来像“无法点击”。
+  const openEffective = open;
 
   useEffect(() => {
     if (openEffective) document.body.style.overflow = "hidden";

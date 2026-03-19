@@ -80,6 +80,13 @@ nextjs-portal {
   text-wrap: balance;
 }
 
+@media (max-width: 767px) {
+  .hero-quote {
+    /* 小屏允许最多 5 行，避免文案被过度截断 */
+    -webkit-line-clamp: 5;
+  }
+}
+
 /* Hero 区入场动画（背景轻微缩放，文字淡入） */
 @keyframes hero-bg-zoom-in {
   from {

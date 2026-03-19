@@ -39,13 +39,13 @@ export function HomeMain() {
     <main className="min-w-0 flex-1">
         {/* Hero：默认宽高比 2:1；小屏改为 1:1（更贴合手机竖屏展示） */}
         <section
-          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-8 aspect-[2/1] max-md:aspect-[1/1]"
+          className="relative flex w-full shrink-0 items-center justify-center overflow-hidden py-8 px-[120px] max-md:px-6 aspect-[2/1] max-md:aspect-[1/1]"
         >
           <div className="absolute inset-0 pointer-events-none hero-bg-animated" aria-hidden>
             <HeroBackground src={PLACEHOLDER.hero.src} />
             <div className="absolute inset-0 bg-black/30" />
           </div>
-          <div className="relative z-10 mx-auto flex w-full flex-col items-center gap-2 px-4 text-center text-white hero-content-animated">
+          <div className="relative z-10 mx-auto flex w-full flex-col items-center gap-2 text-center text-white hero-content-animated">
             <HeroQuote
               text="Weakness and ignorance are not the barriers to survival, but arrogance is."
               className="hero-quote w-full font-bold leading-snug text-[clamp(32px,3.6vw,64px)]"
