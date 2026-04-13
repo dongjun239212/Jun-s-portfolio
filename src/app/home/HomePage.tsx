@@ -1,10 +1,3 @@
-/**
- * 首页内容 - 基于 Figma 设计稿 (node-id=208-70011)
- * Hero 图片走 basePath，兼容 GitHub Pages / Gitee / Vercel 等多环境。
- */
-
-const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
-const heroImg = { src: `${BASE_PATH}/hero-watercolor.png` } as const;
 import keyProject1 from "@/assets/key-project-1.png";
 import keyProject2 from "@/assets/key-project-2.png";
 import keyProject3 from "@/assets/key-project-3.png";
@@ -14,17 +7,103 @@ import { PortfolioShell } from "@/components/layout";
 import { BODY_PRIMARY, TEXT_SECTION_TITLE, TEXT_STAT_LABEL, TEXT_STAT_NUMBER } from "@/lib/typography";
 import { THINKING_TOPICS } from "@/lib/thinkingTopics";
 
+/**
+ * 首页内容 - 基于 Figma 设计稿 (node-id=208-70011)
+ * Hero 图片走 basePath，兼容 GitHub Pages / Gitee / Vercel 等多环境。
+ */
+const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
+const heroImg = { src: `${BASE_PATH}/hero-watercolor.png` } as const;
+
 const PLACEHOLDER = {
   hero: heroImg as { src: string },
 };
 
-const THINKING_CARDS = THINKING_TOPICS.map((t, idx) => ({
+const THINKING_CARDS = THINKING_TOPICS.map((t) => ({
   slug: t.slug,
   title: t.title,
   imageSrcs: t.imageSrcs ?? [],
   gradientFrom: "29.625%",
   blurb: t.blurb,
 }));
+
+const PROJECT_CARDS = [
+  {
+    href: "/detail?title=Shop%20framework%20revamp&from=projects",
+    imageSrc: (keyProject1 as { src: string }).src,
+    title: "Shop framework revamp",
+    description:
+      "As a domain for capturing public traffic, retaining user assets, and driving private domain conversion, the store is evolving from platform-driven operations to a co-managed model with merchants. However, the current store framework no longer meets the demands of rapid business growth. Therefore, a more efficient, flexible, and trustworthy framework is essential to support the next phase of development.",
+  },
+  {
+    href: "/detail?title=Shop%20decoration%20solutions&from=projects",
+    imageSrc: (keyProject2 as { src: string }).src,
+    title: "Shop decoration solutions",
+    description:
+      "To elevate customer satisfaction and engagement, we are focusing on optimizing the user journey. This involves refining navigation, improving load times, and personalizing content. By leveraging user feedback and analytics, we aim to create a seamless and intuitive shopping experience that caters to individual preferences.",
+  },
+  {
+    href: "/detail?title=Shop%20tiering%20system&from=projects",
+    imageSrc: (keyProject3 as { src: string }).src,
+    title: "Shop tiering system",
+    description:
+      "A tiered shop model maps merchant maturity to differentiated tools, exposure, and trust signals—so platform investment aligns with growth stage and sellers always know what to aim for next.",
+  },
+  {
+    href: "/detail?title=Campaign%20for%20shop&from=projects",
+    imageSrc: (keyProject4 as { src: string }).src,
+    title: "Campaign for shop",
+    description:
+      "End-to-end design for shop-facing campaigns: enrollment, assets, and in-store surfacing—balancing low friction for merchants with clear lift in traffic, participation, and conversion.",
+  },
+] as const;
+
+const STATS = [
+  {
+    number: "8",
+    label: "Years",
+    detail: "I have 8 years of UX design experience across consumer and enterprise products.",
+  },
+  {
+    number: "3",
+    label: "Companies",
+    detail: "I have worked at 3 large internet companies in China.",
+  },
+  {
+    number: "12+",
+    label: "Projects",
+    detail: "I have led over 12 key design projects from 0 to 1 or major upgrades.",
+  },
+] as const;
+
+const EXPERIENCES = [
+  {
+    period: "2021.05 - 2035.05",
+    company: "TikTok",
+    role: "SENIOR UX DESIGNER",
+    summary:
+      "As the point of contact for the store and showcase domain, I spearheaded initiatives to enhance entrance traffic, optimize landing page conversion rates, and foster promotion and seller trust. I successfully elevated brand awareness through strategic projects, including a comprehensive revamp of the store&apos;s default homepage.",
+  },
+  {
+    period: "2019.04 - 2021.01",
+    company: "LIGHTINTHEBOX",
+    role: "UX DESIGNER",
+    summary:
+      "Accountable for the specialized visual and interactive design of the ezbuy and LITB shopping platforms, focusing on the iterative enhancements of the homepage, shopping cart interface, login and registration pages, as well as daily operational functionalities.",
+  },
+  {
+    period: "2018.07 - 2019.01",
+    company: "IQIYI",
+    role: "UI DESIGNER",
+    summary:
+      "Facilitate the daily iteration needs of the TVGO APP, ensuring thorough visual inspections and acceptance criteria are met for each version.",
+  },
+] as const;
+
+const CONTACTS = [
+  { label: "WeChat", value: "dongjun 239212", wrapClassName: "whitespace-nowrap" },
+  { label: "Mobile", value: "+86 150 7169 7874", wrapClassName: "whitespace-nowrap" },
+  { label: "Email", value: "dongjun239212@gmail.com", wrapClassName: "whitespace-normal break-all" },
+] as const;
 
 export function HomeMain() {
   return (
@@ -54,36 +133,19 @@ export function HomeMain() {
           </div>
           <div className="flex flex-col gap-10 px-[var(--section-px)] pb-[var(--section-block-pb)] pt-5">
             <div className="grid gap-10 md:grid-cols-2">
-              <LinkToDetail href="/detail?title=Shop%20framework%20revamp&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
-                <ProjectCard
-                  imageSrc={(keyProject1 as { src: string }).src}
-                  title="Shop framework revamp"
-                  description="As a domain for capturing public traffic, retaining user assets, and driving private domain conversion, the store is evolving from platform-driven operations to a co-managed model with merchants. However, the current store framework no longer meets the demands of rapid business growth. Therefore, a more efficient, flexible, and trustworthy framework is essential to support the next phase of development."
-                />
-              </LinkToDetail>
-              <LinkToDetail href="/detail?title=Shop%20decoration%20solutions&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
-                <ProjectCard
-                  imageSrc={(keyProject2 as { src: string }).src}
-                  title="Shop decoration solutions"
-                  description="To elevate customer satisfaction and engagement, we are focusing on optimizing the user journey. This involves refining navigation, improving load times, and personalizing content. By leveraging user feedback and analytics, we aim to create a seamless and intuitive shopping experience that caters to individual preferences."
-                />
-              </LinkToDetail>
-            </div>
-            <div className="grid gap-10 md:grid-cols-2">
-              <LinkToDetail href="/detail?title=Shop%20tiering%20system&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
-                <ProjectCard
-                  imageSrc={(keyProject3 as { src: string }).src}
-                  title="Shop tiering system"
-                  description="A tiered shop model maps merchant maturity to differentiated tools, exposure, and trust signals—so platform investment aligns with growth stage and sellers always know what to aim for next."
-                />
-              </LinkToDetail>
-              <LinkToDetail href="/detail?title=Campaign%20for%20shop&from=projects" className="flex min-h-0 flex-1 no-underline text-inherit">
-                <ProjectCard
-                  imageSrc={(keyProject4 as { src: string }).src}
-                  title="Campaign for shop"
-                  description="End-to-end design for shop-facing campaigns: enrollment, assets, and in-store surfacing—balancing low friction for merchants with clear lift in traffic, participation, and conversion."
-                />
-              </LinkToDetail>
+              {PROJECT_CARDS.map((project) => (
+                <LinkToDetail
+                  key={project.title}
+                  href={project.href}
+                  className="flex min-h-0 flex-1 no-underline text-inherit"
+                >
+                  <ProjectCard
+                    imageSrc={project.imageSrc}
+                    title={project.title}
+                    description={project.description}
+                  />
+                </LinkToDetail>
+              ))}
             </div>
           </div>
         </section>
@@ -96,9 +158,9 @@ export function HomeMain() {
             </h2>
           </div>
           <div className="grid gap-10 px-[var(--section-px)] pb-16 pt-5 md:grid-cols-2 lg:grid-cols-3">
-            {THINKING_CARDS.map((card, key) => (
+            {THINKING_CARDS.map((card) => (
               <LinkToDetail
-                key={key}
+                key={card.slug}
                 href={`/detail?from=thinking&thinking=${encodeURIComponent(card.slug)}&title=${encodeURIComponent(card.title)}`}
                 className="block no-underline text-inherit"
               >
@@ -134,66 +196,32 @@ export function HomeMain() {
                     </p>
                   </div>
                   <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    <StatBlock number="8" label="Years" detail="I have 8 years of UX design experience across consumer and enterprise products." />
-                    <StatBlock number="3" label="Companies" detail="I have worked at 3 large internet companies in China." />
-                    <StatBlock number="12+" label="Projects" detail="I have led over 12 key design projects from 0 to 1 or major upgrades." />
+                    {STATS.map((item) => (
+                      <StatBlock
+                        key={item.label}
+                        number={item.number}
+                        label={item.label}
+                        detail={item.detail}
+                      />
+                    ))}
                   </div>
                 </div>
 
                 {/* 经历：一块一条底边，无左侧竖线 */}
                 <div className="flex flex-col gap-10 border-b border-black pb-[60px] md:gap-10">
-                  <div className="flex gap-6 md:gap-8">
-                    <div className="flex min-w-0 flex-1 flex-col pl-0">
-                      <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/60">2021.05 - 2035.05</span>
-                        <span>TikTok</span>
-                        <span className="font-semibold text-black/90">SENIOR UX DESIGNER</span>
-                      </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
-                        As the point of contact for the store and showcase domain, I spearheaded initiatives to enhance entrance traffic, optimize landing page conversion rates, and foster promotion and seller trust. I successfully elevated brand awareness through strategic projects, including a comprehensive revamp of the store&apos;s default homepage.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-6 md:gap-8">
-                    <div className="flex min-w-0 flex-1 flex-col pl-0">
-                      <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/60">2019.04 - 2021.01</span>
-                        <span>LIGHTINTHEBOX</span>
-                        <span className="font-semibold text-black/90">UX DESIGNER</span>
-                      </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
-                        Accountable for the specialized visual and interactive design of the ezbuy and LITB shopping platforms, focusing on the iterative enhancements of the homepage, shopping cart interface, login and registration pages, as well as daily operational functionalities.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-6 md:gap-8">
-                    <div className="flex min-w-0 flex-1 flex-col pl-0">
-                      <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
-                        <span className="font-semibold tabular-nums text-black/60">2018.07 - 2019.01</span>
-                        <span>IQIYI</span>
-                        <span className="font-semibold text-black/90">UI DESIGNER</span>
-                      </div>
-                      <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">
-                        Facilitate the daily iteration needs of the TVGO APP, ensuring thorough visual inspections and acceptance criteria are met for each version.
-                      </p>
-                    </div>
-                  </div>
+                  {EXPERIENCES.map((experience) => (
+                    <ExperienceBlock key={experience.period} {...experience} />
+                  ))}
                 </div>
 
                 {/* 联系方式：在小屏上拆行，大屏保持一行 */}
                 <div className="flex flex-col flex-wrap gap-4 text-lg font-bold sm:flex-row sm:items-center sm:gap-8 md:text-2xl">
-                  <span className="whitespace-nowrap">
-                    <span className="text-black/50">WeChat</span>{" "}
-                    <span className="break-all">dongjun 239212</span>
-                  </span>
-                  <span className="whitespace-nowrap">
-                    <span className="text-black/50">Mobile</span>{" "}
-                    <span className="break-all">+86 150 7169 7874</span>
-                  </span>
-                  <span className="whitespace-normal break-all">
-                    <span className="text-black/50">Email</span>{" "}
-                    <span className="break-all">dongjun239212@gmail.com</span>
-                  </span>
+                  {CONTACTS.map((contact) => (
+                    <span key={contact.label} className={contact.wrapClassName}>
+                      <span className="text-black/50">{contact.label}</span>{" "}
+                      <span className="break-all">{contact.value}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -238,6 +266,28 @@ function StatBlock({
       <p className={`max-w-[34ch] ${BODY_PRIMARY}`}>
         {detail}
       </p>
+    </div>
+  );
+}
+
+type ExperienceBlockProps = {
+  period: string;
+  company: string;
+  role: string;
+  summary: string;
+};
+
+function ExperienceBlock({ period, company, role, summary }: ExperienceBlockProps) {
+  return (
+    <div className="flex gap-6 md:gap-8">
+      <div className="flex min-w-0 flex-1 flex-col pl-0">
+        <div className="flex flex-wrap items-baseline gap-10 text-2xl font-bold">
+          <span className="font-semibold tabular-nums text-black/60">{period}</span>
+          <span>{company}</span>
+          <span className="font-semibold text-black/90">{role}</span>
+        </div>
+        <p className="mt-3 text-base leading-[1.3] text-black/70 md:mt-4">{summary}</p>
+      </div>
     </div>
   );
 }
